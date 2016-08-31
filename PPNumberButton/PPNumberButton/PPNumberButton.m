@@ -206,7 +206,7 @@
     [_decreaseBtn setTitle:decreaseTitle forState:UIControlStateNormal];
 }
 
-- (void)setImageWithincreaseImage:(UIImage *)increaseImage decreaseImage:(UIImage *)decreaseImage
+- (void)setImageWithIncreaseImage:(UIImage *)increaseImage decreaseImage:(UIImage *)decreaseImage
 {
     [_increaseBtn setTitle:@"" forState:UIControlStateNormal];
     [_decreaseBtn setTitle:@"" forState:UIControlStateNormal];

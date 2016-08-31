@@ -46,7 +46,7 @@
  *  @param increaseImage 加按钮背景图片
  *  @param decreaseImage 减按钮背景图片
  */
-- (void)setImageWithincreaseImage:(UIImage *)increaseImage decreaseImage:(UIImage *)decreaseImage;
+- (void)setImageWithIncreaseImage:(UIImage *)increaseImage decreaseImage:(UIImage *)decreaseImage;
 
 
 
