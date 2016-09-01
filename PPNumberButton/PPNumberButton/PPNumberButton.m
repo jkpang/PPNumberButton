@@ -215,6 +215,17 @@
     [_decreaseBtn setBackgroundImage:decreaseImage forState:UIControlStateNormal];
 }
 
+#pragma mark - 输入框中的内容
+- (NSString *)currentNumber
+{
+    return _textField.text;
+}
+
+- (void)setCurrentNumber:(NSString *)currentNumber
+{
+    _textField.text = currentNumber;
+}
+
 #pragma mark - 抖动动画
 - (void)shakeAnimation
 {
