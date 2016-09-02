@@ -64,10 +64,8 @@ numberButton.numberBlock = ^(NSString *num){
 
 ##使用xib创建
 在控制器界面拖入UIView控件,在右侧的设置栏中将class名修改为PPNumberButton,按回车就OK了.
-![](/Users/AndyPang/Documents/GitHub/PPNumberButton/photo.png
-)
 
-
+![示例图](https://github.com/jkpang/PPNumberButton/blob/master/photo.png)
 
 ====
 因为之前的项目中需要,在网上找了好多都不符合要求,干脆自己花了点时间撸了一个,现在分享出来,希望能帮到有需要的人。 如果你觉得不错,希望Star鼓励一下哈,你的Star是我持续更新的动力!
