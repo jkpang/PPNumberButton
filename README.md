@@ -1,12 +1,12 @@
 # PPNumberButton
 仿京东淘宝购物车商品的加减按钮,可定制程度较高,使用简单!
 
-*  支持自定义加/减按钮的标题内容或背景图片;
-* 支持设置整个按钮的边框颜色;
-* 支持数字区域使用键盘输入,;
+*  支持自定义加/减按钮的标题内容、背景图片;
+* 支持设置边框颜色;
+* 支持使用键盘输入;
 * 支持长按加/减按钮快速加减; 
-* 支持自定义大小;
 * 支持block回调与delegate(代理)回调.
+* 支持使用xib创建、自定义大小
 
 ![示例图](https://github.com/jkpang/PPNumberButton/blob/master/PPNumberButton.gif)
 
@@ -62,7 +62,14 @@ numberButton.numberBlock = ^(NSString *num){
 ```
 #####注: 加减号按钮的标题和背景图片只能设置其中一个,若全部设置,则以最后设置的类型为准
 
+##使用xib创建
+在控制器界面拖入UIView控件,在右侧的设置栏中将class名修改为PPNumberButton,按回车就OK了.
+![](/Users/AndyPang/Documents/GitHub/PPNumberButton/photo.png
+)
 
+
+
+====
 因为之前的项目中需要,在网上找了好多都不符合要求,干脆自己花了点时间撸了一个,现在分享出来,希望能帮到有需要的人。 如果你觉得不错,希望Star鼓励一下哈,你的Star是我持续更新的动力!
 
 ##联系方式:

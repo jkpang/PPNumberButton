@@ -30,25 +30,17 @@
 
 @implementation PPNumberButton
 
+#pragma mark - 初始化
 - (instancetype)initWithFrame:(CGRect)frame
 {
     if (self = [super initWithFrame:frame])
     {
         [self setupUI];
-        self.frame = frame;
+        //整个控件的默认尺寸(和某宝上面的按钮同样大小)
+        if(CGRectIsEmpty(frame)) {self.frame = CGRectMake(0, 0, 110, 30);};
     }
     return self;
 }
-
-- (instancetype)init
-{
-    if (self = [super init])
-    {
-        [self setupUI];
-    }
-    return self;
-}
-
 - (void)awakeFromNib
 {
     [self setupUI];
@@ -60,8 +52,6 @@
     self.backgroundColor = [UIColor whiteColor];
     self.layer.cornerRadius = 3.f;
     self.clipsToBounds = YES;
-    //整个控件的默认尺寸(和某宝上面的按钮同样大小)
-    self.frame = CGRectMake(0, 0, 110, 30);
     
     //减,加按钮
     _decreaseBtn = [self setupButtonWithTitle:@"－"];
@@ -77,20 +67,6 @@
     _textField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
     _textField.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
     [self addSubview:_textField];
-    
-    [self setFrame:self.frame];
-    
-}
-//设置控件Frame
-- (void)setFrame:(CGRect)frame
-{
-    [super setFrame:frame];
-    //加减按钮为正方形
-    CGFloat height = self.frame.size.height;
-    CGFloat width =  self.frame.size.width;
-    _decreaseBtn.frame = CGRectMake(0, 0, height, height);
-    _increaseBtn.frame = CGRectMake(width - height, 0, height, height);
-    _textField.frame = CGRectMake(height, 0, width - height * 2, height);
 }
 
 //设置加减按钮的公共方法
@@ -106,6 +82,18 @@
     return button;
 }
 
+#pragma mark - layoutSubviews
+- (void)layoutSubviews
+{
+    [super layoutSubviews];
+    //加减按钮为正方形
+    CGFloat height = self.frame.size.height;
+    CGFloat width =  self.frame.size.width;
+    _decreaseBtn.frame = CGRectMake(0, 0, height, height);
+    _increaseBtn.frame = CGRectMake(width - height, 0, height, height);
+    _textField.frame = CGRectMake(height, 0, width - height * 2, height);
+}
+
 #pragma mark - UITextFieldDelegate
 - (void)textFieldDidEndEditing:(UITextField *)textField
 {
@@ -115,7 +103,7 @@
 }
 
 #pragma mark - 加减按钮点击响应
-//单击逐次加减,长按连续加减
+//点击: 单击逐次加减,长按连续加减
 - (void)touchDown:(UIButton *)sender
 {
     [_textField resignFirstResponder];
@@ -127,7 +115,7 @@
     }
     [_timer fire];
 }
-
+//松开
 - (void)touchUp:(UIButton *)sender
 {
     [self cleanTimer];

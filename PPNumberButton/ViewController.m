@@ -76,7 +76,7 @@
     PPNumberButton *numberButton = [[PPNumberButton alloc] initWithFrame:CGRectMake(100, 300, 100, 30)];
     numberButton.shakeAnimation = YES;
     //numberButton.backgroundColor = [UIColor clearColor];
-    [numberButton setImageWithincreaseImage:[UIImage imageNamed:@"timeline_relationship_icon_addattention"] decreaseImage:[UIImage imageNamed:@"decrease_highlight"]];
+    [numberButton setImageWithIncreaseImage:[UIImage imageNamed:@"timeline_relationship_icon_addattention"] decreaseImage:[UIImage imageNamed:@"decrease_highlight"]];
     
     numberButton.numberBlock = ^(NSString *num){
         NSLog(@"%@",num);
