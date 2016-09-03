@@ -46,6 +46,10 @@
     [self setupUI];
 }
 
++ (instancetype)numberButtonWithFrame:(CGRect)frame
+{
+    return [[PPNumberButton alloc] initWithFrame:frame];
+}
 #pragma mark - UI布局
 - (void)setupUI
 {
