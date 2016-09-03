@@ -17,6 +17,7 @@
 ##Usage 使用方法
 ####实例化方法
 `[[PPNumberButton alloc] init];`:默认的frame为CGRectMake(0, 0, 110, 30)
+
 或
 
 `[[PPNumberButton alloc] initWithFrame:frame];`
