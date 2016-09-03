@@ -6,7 +6,7 @@
 * 支持使用键盘输入;
 * 支持长按加/减按钮快速加减; 
 * 支持block回调与delegate(代理)回调.
-* 支持使用xib创建、自定义大小
+* 支持使用xib创建、类方法创建、自定义大小
 
 ![示例图](https://github.com/jkpang/PPNumberButton/blob/master/PPNumberButton.gif)
 
@@ -15,6 +15,15 @@
 下载DEMO后,将子文件夹PPNumberButton拖入到项目中, 导入头文件PPNumberButton.h开始使用.
 
 ##Usage 使用方法
+####实例化方法
+`[[PPNumberButton alloc] init];`:默认的frame为CGRectMake(0, 0, 110, 30)
+或
+
+`[[PPNumberButton alloc] initWithFrame:frame];`
+
+或
+
+`[PPNumberButton numberButtonWithFrame:frame];`: 类方法创建
 ###1.默认样式
 
 ```objc
