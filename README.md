@@ -10,6 +10,10 @@
 
 ![示例图](https://github.com/jkpang/PPNumberButton/blob/master/PPNumberButton.gif)
 
+##Requirements 要求
+* iOS7+
+* Xcode 7+
+
 ##Installation 安装
 ###1.手动安装:
 下载DEMO后,将子文件夹PPNumberButton拖入到项目中, 导入头文件PPNumberButton.h开始使用.
