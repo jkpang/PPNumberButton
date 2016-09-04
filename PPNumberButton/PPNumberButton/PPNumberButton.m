@@ -183,10 +183,10 @@
     _increaseBtn.layer.borderWidth = 0.5;
 }
 
-- (void)setFont:(UIFont *)font
+- (void)setButtonTitleFont:(UIFont *)buttonTitleFont
 {
-    _increaseBtn.titleLabel.font = font;
-    _decreaseBtn.titleLabel.font = font;
+    _increaseBtn.titleLabel.font = buttonTitleFont;
+    _decreaseBtn.titleLabel.font = buttonTitleFont;
 }
 
 - (void)setTitleWithIncreaseTitle:(NSString *)increaseTitle decreaseTitle:(NSString *)decreaseTitle
@@ -207,7 +207,7 @@
     [_decreaseBtn setBackgroundImage:decreaseImage forState:UIControlStateNormal];
 }
 
-#pragma mark - 输入框中的内容
+#pragma mark - 输入框中的内容设置
 - (NSString *)currentNumber
 {
     return _textField.text;
@@ -216,6 +216,11 @@
 - (void)setCurrentNumber:(NSString *)currentNumber
 {
     _textField.text = currentNumber;
+}
+
+- (void)setInputFieldFont:(UIFont *)inputFieldFont
+{
+    _textField.font = inputFieldFont;
 }
 
 #pragma mark - 抖动动画

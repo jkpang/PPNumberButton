@@ -41,11 +41,14 @@
 /** 是否开启抖动动画,默认NO*/
 @property (nonatomic, assign, getter=isShakeAnimation) BOOL shakeAnimation;
 
-/** 获取/设置当前输入框的内容*/
+/** 输入框中的内容*/
 @property (nonatomic, copy) NSString *currentNumber;
 
+/** 输入框中的字体属性*/
+@property (nonatomic, strong) UIFont *inputFieldFont;
+
 /** 加减按钮的字体属性*/
-@property (nonatomic, strong) UIFont *font;
+@property (nonatomic, strong) UIFont *buttonTitleFont;
 
 //注意:加减号按钮的标题和背景图片只能设置其中一个,若全部设置,则以最后设置的类型为准
 /**
