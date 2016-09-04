@@ -151,7 +151,7 @@
     }
     else
     {
-        _shakeAnimation ? [self shakeAnimation] : nil;
+        self.isShakeAnimation ? [self shakeAnimation] : nil;
         PPLog(@"数量不能小于1");
     }
 }
