@@ -38,7 +38,7 @@
 /** 设置边框的颜色,如果没有设置颜色,就没有边框*/
 @property (nonatomic, strong) UIColor *borderColor;
 
-/** 是否开启旋转动画,默认NO*/
+/** 是否开启抖动动画,默认NO*/
 @property (nonatomic, assign, getter=isShakeAnimation) BOOL shakeAnimation;
 
 /** 获取/设置当前输入框的内容*/
