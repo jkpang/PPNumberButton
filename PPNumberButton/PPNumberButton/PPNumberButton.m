@@ -152,7 +152,7 @@
     else
     {
         _shakeAnimation ? [self shakeAnimation] : nil;
-        NSLog(@"数量不能小于1");
+        PPLog(@"数量不能小于1");
     }
 }
 

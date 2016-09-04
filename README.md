@@ -17,6 +17,12 @@
 ##Installation 安装
 ###1.手动安装:
 下载DEMO后,将子文件夹PPNumberButton拖入到项目中, 导入头文件PPNumberButton.h开始使用.
+###2.CocoaPods安装:
+first
+`pod 'PPNumberButton', '~> 0.1.0' `
+
+then
+`pod install或pod install --no-repo-update`
 
 ##Usage 使用方法
 ####实例化方法
