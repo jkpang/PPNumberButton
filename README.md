@@ -8,6 +8,8 @@
 * 支持block回调与delegate(代理)回调.
 * 支持使用xib创建、类方法创建、自定义大小
 
+[简书地址](http://www.jianshu.com/p/0b6f53a1ccaf) ;
+
 ![示例图](https://github.com/jkpang/PPNumberButton/blob/master/PPNumberButton.gif)
 
 ##Requirements 要求

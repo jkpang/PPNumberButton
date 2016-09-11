@@ -11,9 +11,11 @@
 @protocol PPNumberButtonDelegate <NSObject>
 
 @optional
+/**
+ *  加减按钮点击响应的代理回调
+ */
 - (void)PPNumberButton:(UIView *)numberButton number:(NSString *)number;
 @end
-
 
 
 @interface PPNumberButton : UIView
@@ -31,7 +33,6 @@
  *  @return 返回一个PPNumberButton的实例对象
  */
 + (instancetype)numberButtonWithFrame:(CGRect)frame;
-
 
 #pragma mark - 自定义样式设置
 
