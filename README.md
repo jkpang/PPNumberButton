@@ -13,7 +13,7 @@
 ![示例图](https://github.com/jkpang/PPNumberButton/blob/master/PPNumberButton.gif)
 
 ##Requirements 要求
-* iOS7+
+* iOS 7+
 * Xcode 7+
 
 ##Installation 安装
@@ -21,11 +21,11 @@
 下载DEMO后,将子文件夹PPNumberButton拖入到项目中, 导入头文件PPNumberButton.h开始使用.
 ###2.CocoaPods安装:
 first
-`pod 'PPNumberButton', '~> 0.1.0' `
-
+`pod 'PPNumberButton', '~> 0.1.1' `
 then
 `pod install或pod install --no-repo-update`
 
+如果发现pod search PPNetworkHelper 不是最新版本，在终端执行pod setup命令更新本地spec镜像缓存(时间可能有点长),重新搜索就OK了
 ##Usage 使用方法
 ####实例化方法
 `[[PPNumberButton alloc] init];`:默认的frame为CGRectMake(0, 0, 110, 30)
@@ -90,7 +90,12 @@ numberButton.numberBlock = ^(NSString *num){
 ![示例图](https://github.com/jkpang/PPNumberButton/blob/master/photo.png)
 
 ====
-因为之前的项目中需要,在网上找了好多都不符合要求,干脆自己花了点时间撸了一个,现在分享出来,希望能帮到有需要的人。 如果你觉得不错,希望Star鼓励一下哈,你的Star是我持续更新的动力!
+因为之前的项目中需要,在网上找了好多都不符合要求,干脆自己花了点时间撸了一个,现在分享出来,希望能帮到有需要的人。 如果你觉得不错,希望点个Star鼓励一下
+#####你的Star是我持续更新的动力!
+
+##CocoaPods更新日志
+* 2016.09.12(tag:0.1.1)--小细节优化
+* 2016.09.03(tag:0.1.0)--Pods初始化
 
 ##联系方式:
 * Weibo : @CoderPang
