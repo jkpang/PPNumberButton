@@ -10,6 +10,8 @@
 
 [简书地址](http://www.jianshu.com/p/0b6f53a1ccaf) ;
 
+####如果你需要Swift版本,请戳: https://github.com/jkpang/PPNumberButtonSwift
+
 ![示例图](https://github.com/jkpang/PPNumberButton/blob/master/PPNumberButton.gif)
 
 ##Requirements 要求
@@ -25,7 +27,7 @@ first
 then
 `pod install或pod install --no-repo-update`
 
-如果发现pod search PPNetworkHelper 不是最新版本，在终端执行pod setup命令更新本地spec镜像缓存(时间可能有点长),重新搜索就OK了
+如果发现pod search PPNumberButton 不是最新版本，在终端执行pod setup命令更新本地spec镜像缓存(时间可能有点长),重新搜索就OK了
 ##Usage 使用方法
 ####实例化方法
 `[[PPNumberButton alloc] init];`:默认的frame为CGRectMake(0, 0, 110, 30)
@@ -91,7 +93,7 @@ numberButton.numberBlock = ^(NSString *num){
 
 ====
 因为之前的项目中需要,在网上找了好多都不符合要求,干脆自己花了点时间撸了一个,现在分享出来,希望能帮到有需要的人。 如果你觉得不错,希望点个Star鼓励一下
-#####你的Star是我持续更新的动力!
+####你的Star是我持续更新的动力!
 
 ##CocoaPods更新日志
 * 2016.09.14(tag:0.1.2)--添加使用XIB创建时的实时显示
