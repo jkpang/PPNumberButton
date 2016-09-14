@@ -37,7 +37,7 @@
 - (void)PPNumberButton:(UIView *)numberButton number:(NSString *)number;
 @end
 
-
+IB_DESIGNABLE
 @interface PPNumberButton : UIView
 
 /** 加减按钮的回调*/

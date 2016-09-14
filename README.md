@@ -94,6 +94,7 @@ numberButton.numberBlock = ^(NSString *num){
 #####你的Star是我持续更新的动力!
 
 ##CocoaPods更新日志
+* 2016.09.14(tag:0.1.2)--添加使用XIB创建时的实时显示
 * 2016.09.12(tag:0.1.1)--小细节优化
 * 2016.09.03(tag:0.1.0)--Pods初始化
 
