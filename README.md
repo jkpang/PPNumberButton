@@ -1,7 +1,7 @@
 # PPNumberButton
 仿京东淘宝购物车商品的加减按钮,可定制程度较高,使用简单!
 
-*  支持自定义加/减按钮的标题内容、背景图片;
+* 支持自定义加/减按钮的标题内容、背景图片;
 * 支持设置边框颜色;
 * 支持使用键盘输入;
 * 支持长按加/减按钮快速加减; 
@@ -90,6 +90,8 @@ numberButton.numberBlock = ^(NSString *num){
 在控制器界面拖入UIView控件,在右侧的设置栏中将class名修改为PPNumberButton,按回车就OK了.
 
 ![示例图](https://github.com/jkpang/PPNumberButton/blob/master/photo.png)
+
+_*注意!如果有的同学将控件拖线到代码中,千万不要忘记在拖线的代码文件中导入 "PPNumberButton.h"头文件,否则会报错.*_
 
 ====
 因为之前的项目中需要,在网上找了好多都不符合要求,干脆自己花了点时间撸了一个,现在分享出来,希望能帮到有需要的人。 如果你觉得不错,希望点个Star鼓励一下
