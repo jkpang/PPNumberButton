@@ -57,10 +57,10 @@ IB_DESIGNABLE
 #pragma mark - 自定义样式设置
 
 /** 设置边框的颜色,如果没有设置颜色,就没有边框*/
-@property (nonatomic, strong) UIColor *borderColor;
+@property (nonatomic, strong) IBInspectable UIColor *borderColor;
 
 /** 是否开启抖动动画,默认NO*/
-@property (nonatomic, assign, getter=isShakeAnimation) BOOL shakeAnimation;
+@property (nonatomic, assign, getter=isShakeAnimation) IBInspectable BOOL shakeAnimation;
 
 /** 输入框中的内容*/
 @property (nonatomic, copy) NSString *currentNumber;
