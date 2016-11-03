@@ -59,7 +59,7 @@
     self.layer.cornerRadius = 3.f;
     self.clipsToBounds = YES;
     _minValue = 1;
-    _maxValue = MAXFLOAT;
+    _maxValue = NSIntegerMax;
     
     //减,加按钮
     _decreaseBtn = [self setupButtonWithTitle:@"－"];
@@ -148,7 +148,7 @@
     else
     {
         self.isShakeAnimation ? [self shakeAnimation] : nil;
-        PPLog(@"已超过最大数量");
+        PPLog(@"已超过最大数量%ld",_maxValue);
     }
 }
 
@@ -167,7 +167,7 @@
     else
     {
         self.isShakeAnimation ? [self shakeAnimation] : nil;
-        PPLog(@"数量不能小于1");
+        PPLog(@"数量不能小于%ld",_minValue);
     }
 }
 

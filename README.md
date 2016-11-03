@@ -25,7 +25,7 @@
 下载DEMO后,将子文件夹PPNumberButton拖入到项目中, 导入头文件PPNumberButton.h开始使用.
 ###2.CocoaPods安装:
 first
-`pod 'PPNumberButton', '~> 0.1.1' `
+`pod 'PPNumberButton'
 then
 `pod install或pod install --no-repo-update`
 
@@ -100,6 +100,7 @@ _*注意!如果有的同学将控件拖线到代码中,千万不要忘记在拖�
 ####你的Star是我持续更新的动力!
 
 ##CocoaPods更新日志
+* 2016.11.03(tag:0.2.0)--设置maxValue(最大值)与minValue(最小值)属性接口.
 * 2016.09.14(tag:0.1.2)--添加使用XIB创建时的实时显示
 * 2016.09.12(tag:0.1.1)--小细节优化
 * 2016.09.03(tag:0.1.0)--Pods初始化
