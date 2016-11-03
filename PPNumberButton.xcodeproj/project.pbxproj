@@ -15,6 +15,7 @@
 		2281A7781D7669CA0094E113 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2281A7761D7669CA0094E113 /* LaunchScreen.storyboard */; };
 		2281A7831D7669CA0094E113 /* PPNumberButtonTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2281A7821D7669CA0094E113 /* PPNumberButtonTests.m */; };
 		22A9A90B1D76AFB100BA2FF5 /* PPNumberButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 22A9A90A1D76AFB100BA2FF5 /* PPNumberButton.m */; };
+		35DEA7F21DCB2EA4004F4429 /* NSString+PPNumberButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 35DEA7F11DCB2EA4004F4429 /* NSString+PPNumberButton.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,6 +44,8 @@
 		2281A7841D7669CA0094E113 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		22A9A9091D76AFB100BA2FF5 /* PPNumberButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPNumberButton.h; sourceTree = "<group>"; };
 		22A9A90A1D76AFB100BA2FF5 /* PPNumberButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPNumberButton.m; sourceTree = "<group>"; };
+		35DEA7F01DCB2EA4004F4429 /* NSString+PPNumberButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+PPNumberButton.h"; sourceTree = "<group>"; };
+		35DEA7F11DCB2EA4004F4429 /* NSString+PPNumberButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+PPNumberButton.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +123,8 @@
 			children = (
 				22A9A9091D76AFB100BA2FF5 /* PPNumberButton.h */,
 				22A9A90A1D76AFB100BA2FF5 /* PPNumberButton.m */,
+				35DEA7F01DCB2EA4004F4429 /* NSString+PPNumberButton.h */,
+				35DEA7F11DCB2EA4004F4429 /* NSString+PPNumberButton.m */,
 			);
 			path = PPNumberButton;
 			sourceTree = "<group>";
@@ -226,6 +231,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				22A9A90B1D76AFB100BA2FF5 /* PPNumberButton.m in Sources */,
+				35DEA7F21DCB2EA4004F4429 /* NSString+PPNumberButton.m in Sources */,
 				2281A7701D7669CA0094E113 /* ViewController.m in Sources */,
 				2281A76D1D7669CA0094E113 /* AppDelegate.m in Sources */,
 				2281A76A1D7669C90094E113 /* main.m in Sources */,

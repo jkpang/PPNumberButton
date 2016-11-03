@@ -7,6 +7,7 @@
 //
 
 #import "PPNumberButton.h"
+#import "NSString+PPNumberButton.h"
 
 #ifdef DEBUG
 #define PPLog(...) NSLog(@"%s 第%d行 \n %@\n\n",__func__,__LINE__,[NSString stringWithFormat:__VA_ARGS__])
@@ -57,6 +58,8 @@
     self.backgroundColor = [UIColor whiteColor];
     self.layer.cornerRadius = 3.f;
     self.clipsToBounds = YES;
+    _minValue = 1;
+    _maxValue = MAXFLOAT;
     
     //减,加按钮
     _decreaseBtn = [self setupButtonWithTitle:@"－"];
@@ -102,7 +105,11 @@
 #pragma mark - UITextFieldDelegate
 - (void)textFieldDidEndEditing:(UITextField *)textField
 {
-    textField.text.length == 0 || textField.text.integerValue <= 0 ? _textField.text = @"1" : nil;
+    NSString *minValueString = [NSString stringWithFormat:@"%ld",_minValue];
+    NSString *maxValueString = [NSString stringWithFormat:@"%ld",_maxValue];
+    
+    [textField.text isNotBlank] == NO || textField.text.integerValue < _minValue ? _textField.text = minValueString : nil;
+    textField.text.integerValue > _maxValue ? _textField.text = maxValueString : nil;
     _numberBlock ? _numberBlock(_textField.text) : nil;
     _delegate ? [_delegate PPNumberButton:self number:_textField.text] : nil;
 }
@@ -129,24 +136,31 @@
 //加
 - (void)increase
 {
-    _textField.text.length == 0 ? _textField.text = @"1" : nil;
+    [_textField.text isNotBlank] == NO ? _textField.text = [NSString stringWithFormat:@"%ld",_minValue] : nil;
     NSInteger number = [_textField.text integerValue] + 1;
-    _textField.text = [NSString stringWithFormat:@"%ld", number];
     
-    _numberBlock ? _numberBlock(_textField.text) : nil;
-    _delegate ? [_delegate PPNumberButton:self number:_textField.text] : nil;
-
+    if (number <= self.maxValue)
+    {
+        _textField.text = [NSString stringWithFormat:@"%ld", number];
+        _numberBlock ? _numberBlock(_textField.text) : nil;
+        _delegate ? [_delegate PPNumberButton:self number:_textField.text] : nil;
+    }
+    else
+    {
+        self.isShakeAnimation ? [self shakeAnimation] : nil;
+        PPLog(@"已超过最大数量");
+    }
 }
 
 //减
 - (void)decrease
 {
-    _textField.text.length == 0 ? _textField.text = @"1" : nil;
+    [_textField.text isNotBlank] == NO ? _textField.text = [NSString stringWithFormat:@"%ld",_minValue] : nil;
     NSInteger number = [_textField.text integerValue] - 1;
-    if (number > 0)
+    
+    if (number >= self.minValue)
     {
         _textField.text = [NSString stringWithFormat:@"%ld", number];
-        
         _numberBlock ? _numberBlock(_textField.text) : nil;
         _delegate ? [_delegate PPNumberButton:self number:_textField.text] : nil;
     }
@@ -173,8 +187,15 @@
 
 #pragma mark - 加减按钮的属性设置
 
+- (void)setMinValue:(NSInteger)minValue
+{
+    _minValue = minValue;
+    _textField.text = [NSString stringWithFormat:@"%ld",minValue];
+}
+
 - (void)setBorderColor:(UIColor *)borderColor
 {
+    _borderColor = borderColor;
     self.layer.borderColor = [borderColor CGColor];
     _decreaseBtn.layer.borderColor = [borderColor CGColor];
     _increaseBtn.layer.borderColor = [borderColor CGColor];
@@ -186,6 +207,7 @@
 
 - (void)setButtonTitleFont:(UIFont *)buttonTitleFont
 {
+    _buttonTitleFont = buttonTitleFont;
     _increaseBtn.titleLabel.font = buttonTitleFont;
     _decreaseBtn.titleLabel.font = buttonTitleFont;
 }

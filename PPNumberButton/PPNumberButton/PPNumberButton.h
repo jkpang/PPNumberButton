@@ -74,6 +74,11 @@ IB_DESIGNABLE
 /** 加减按钮的字体属性*/
 @property (nonatomic, strong) UIFont *buttonTitleFont;
 
+/** 最小值, default is 1*/
+@property (nonatomic, assign) NSInteger minValue;
+/** 最大值 */
+@property (nonatomic, assign) NSInteger maxValue;
+
 //注意:加减号按钮的标题和背景图片只能设置其中一个,若全部设置,则以最后设置的类型为准
 /**
  *  设置加/减按钮的标题

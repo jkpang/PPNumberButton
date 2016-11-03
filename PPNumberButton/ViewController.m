@@ -55,6 +55,8 @@
     PPNumberButton *numberButton = [[PPNumberButton alloc] initWithFrame:CGRectMake(100, 100, 110, 30)];
     //开启抖动动画
     numberButton.shakeAnimation = YES;
+    numberButton.minValue = 2;
+    numberButton.maxValue = 10;
     numberButton.numberBlock = ^(NSString *num){
         NSLog(@"%@",num);
     };
