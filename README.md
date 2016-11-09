@@ -1,4 +1,4 @@
-# PPNumberButton
+![](https://github.com/jkpang/PPNumberButton/blob/master/Picture/PPNumberButton.png)
 
 ![](https://img.shields.io/badge/platform-iOS-red.svg) ![](https://img.shields.io/badge/language-Objective--C-orange.svg) ![](https://img.shields.io/badge/pod-v0.2.0-blue.svg) ![](https://img.shields.io/badge/license-MIT%20License-brightgreen.svg)  [![](https://img.shields.io/badge/weibo-%40CoderPang-yellow.svg)](http://weibo.com/5743737098/profile?rightmod=1&wvr=6&mod=personinfo&is_all=1)
 
@@ -17,7 +17,7 @@
 
 ####如果你需要Swift版本,请戳: https://github.com/jkpang/PPNumberButtonSwift
 
-![示例图](https://github.com/jkpang/PPNumberButton/blob/master/PPNumberButton.gif)
+![示例图](https://github.com/jkpang/PPNumberButton/blob/master/Picture/PPNumberButton.gif)
 
 ##Requirements 要求
 * iOS 7+
@@ -94,7 +94,7 @@ numberButton.numberBlock = ^(NSString *num){
 ##使用xib创建
 在控制器界面拖入UIView控件,在右侧的设置栏中将class名修改为PPNumberButton,按回车就OK了.
 
-![示例图](https://github.com/jkpang/PPNumberButton/blob/master/photo.png)
+![示例图](https://github.com/jkpang/PPNumberButton/blob/master/Picture/photo.png)
 
 _*注意!如果有的同学将控件拖线到代码中,千万不要忘记在拖线的代码文件中导入 "PPNumberButton.h"头文件,否则会报错.*_
 
