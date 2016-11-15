@@ -1,10 +1,10 @@
 Pod::Spec.new do |s|
   s.name         = 'PPNumberButton'
-  s.version      = '0.2.0'
+  s.version      = '0.3.0'
   s.license      = { :type => "MIT", :file => "LICENSE" }
   s.homepage     = 'https://github.com/jkpang/PPNumberButton.git'
   s.authors      = { "jkpang" => "jkpang@outlook.com" }
-  s.summary      = '类似京东淘宝商品数量的加减按钮,可定制程度高,使用简单!'
+  s.summary      = 'iOS中一款高度可定制性商品计数按钮(京东/淘宝/饿了么/美团外卖/百度外卖样式),使用简单!'
 
   s.platform     = :ios, '7.0'
   s.source       = { git: 'https://github.com/jkpang/PPNumberButton.git', :tag => s.version.to_s}

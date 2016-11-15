@@ -6,11 +6,12 @@
     },
     {
       "idiom" : "universal",
-      "filename" : "decrease_normal@2x.png",
+      "filename" : "decrease_meituan@2x.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
+      "filename" : "decrease_meituan@3x.png",
       "scale" : "3x"
     }
   ],

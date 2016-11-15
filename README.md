@@ -1,16 +1,17 @@
 ![](https://github.com/jkpang/PPNumberButton/blob/master/Picture/PPNumberButton.png)
 
-![](https://img.shields.io/badge/platform-iOS-red.svg) ![](https://img.shields.io/badge/language-Objective--C-orange.svg) ![](https://img.shields.io/badge/pod-v0.2.0-blue.svg) ![](https://img.shields.io/badge/license-MIT%20License-brightgreen.svg)  [![](https://img.shields.io/badge/weibo-%40CoderPang-yellow.svg)](http://weibo.com/5743737098/profile?rightmod=1&wvr=6&mod=personinfo&is_all=1)
+![](https://img.shields.io/badge/platform-iOS-red.svg) ![](https://img.shields.io/badge/language-Objective--C-orange.svg) ![](https://img.shields.io/badge/pod-v0.3.0-blue.svg) ![](https://img.shields.io/badge/license-MIT%20License-brightgreen.svg)  [![](https://img.shields.io/badge/weibo-%40CoderPang-yellow.svg)](http://weibo.com/5743737098/profile?rightmod=1&wvr=6&mod=personinfo&is_all=1)
 
-仿京东淘宝购物车商品的加减按钮,可定制程度较高,使用简单!
+###iOS中一款高度可定制性商品计数按钮,使用简单!
 
 * 支持自定义加/减按钮的标题内容、背景图片;
 * 支持设置边框颜色;
 * 支持使用键盘输入;
 * 支持长按加/减按钮快速加减; 
 * 支持block回调与delegate(代理)回调;
-* 支持使用xib创建、类方法创建、自定义大小;
-* 支持设置maxValue(最大值)与minValue(最小值)属性.
+* 支持使用xib创建、直接在IB面板设置相关属性;
+* 支持设置maxValue(最大值)与minValue(最小值).
+* 支持按钮自定义为京东/淘宝样式,饿了么/美团外卖/百度外卖样式;
 
 ###新建 PP-iOS学习交流群 : 323408051 有关于PP系列封装的问题和iOS技术可以在此群讨论
 [简书地址](http://www.jianshu.com/p/0b6f53a1ccaf) ;
@@ -44,65 +45,88 @@ then
 或
 
 `[PPNumberButton numberButtonWithFrame:frame];`: 类方法创建
-###1.默认样式
+###1.自定义加减按钮文字标题
 
 ```objc
- PPNumberButton *numberButton = [[PPNumberButton alloc] initWithFrame:CGRectMake(100, 100, 110, 30)];
- //按钮的block回调
- numberButton.numberBlock = ^(NSString *num){
-        NSLog(@"%@",num);
- };
- [self.view addSubview:numberButton];
-```
-###2.边框样式
-
-```objc
-PPNumberButton *numberButton = [[PPNumberButton alloc] initWithFrame:CGRectMake(100, 160, 200, 30)];
-//设置边框颜色(如果没有设置颜色就没有边框)
-numberButton.borderColor = [UIColor grayColor];
-numberButton.numberBlock = ^(NSString *num){
-      NSLog(@"%@",num);
- };
-[self.view addSubview:numberButton];
-```
-###3.自定义加减按钮的标题
-
-```objc
- PPNumberButton *numberButton = [[PPNumberButton alloc] initWithFrame:CGRectMake(100, 220, 150, 44)];
-    //设置加减按钮文字
-[numberButton setTitleWithIncreaseTitle:@"加" decreaseTitle:@"减"];
-numberButton.numberBlock = ^(NSString *num){
-     NSLog(@"%@",num);
-};
-[self.view addSubview:numberButton];
-```
-###4.自定义加减按钮的背景图片
-
-```objc
-PPNumberButton *numberButton = [[PPNumberButton alloc] initWithFrame:CGRectMake(100, 300, 100, 30)];
-//设置加减按钮的背景图片
-[numberButton setImageWithIncreaseImage:[UIImage imageNamed:@"➕按钮图片"] decreaseImage:[UIImage imageNamed:@"➖按钮图片"]];
-numberButton.numberBlock = ^(NSString *num){
-        NSLog(@"%@",num);
-};
+ 	PPNumberButton *numberButton = [PPNumberButton numberButtonWithFrame:CGRectMake(100, 100, 110, 30)];
+    // 开启抖动动画
+    numberButton.shakeAnimation = YES;
+    // 设置最小值
+    numberButton.minValue = 2;
+    // 设置最大值
+    numberButton.maxValue = 10;
+    // 设置输入框中的字体大小
+    numberButton.inputFieldFont = 23;
+    numberButton.increaseTitle = @"＋";
+    numberButton.decreaseTitle = @"－";
     
-[self.view addSubview:numberButton];
+    numberButton.numberBlock = ^(NSString *num){
+        NSLog(@"%@",num);
+    };
+    [self.view addSubview:numberButton];
+```
+###2.边框状态
+
+```objc
+	PPNumberButton *numberButton = [PPNumberButton numberButtonWithFrame:CGRectMake(100, 160, 150, 30)];
+    //设置边框颜色
+    numberButton.borderColor = [UIColor grayColor];
+    numberButton.increaseTitle = @"＋";
+    numberButton.decreaseTitle = @"－";
+    
+    numberButton.numberBlock = ^(NSString *num){
+        NSLog(@"%@",num);
+    };
+    
+    [self.view addSubview:numberButton];
 
 ```
-#####注: 加减号按钮的标题和背景图片只能设置其中一个,若全部设置,则以最后设置的类型为准
+###3.自定义加减按钮背景图片
+
+```objc
+ 	PPNumberButton *numberButton = [PPNumberButton numberButtonWithFrame:CGRectMake(100, 220, 100, 30)];
+    numberButton.shakeAnimation = YES;
+    numberButton.increaseImage = [UIImage imageNamed:@"increase_taobao"];
+    numberButton.decreaseImage = [UIImage imageNamed:@"decrease_taobao"];
+    
+    numberButton.numberBlock = ^(NSString *num){
+        NSLog(@"%@",num);
+    };
+    
+    [self.view addSubview:numberButton];
+```
+###4.饿了么,美团外卖,百度外卖样式
+
+```objc
+	PPNumberButton *numberButton = [PPNumberButton numberButtonWithFrame:CGRectMake(100, 280, 100, 30)];
+    // 初始化时隐藏减按钮
+    numberButton.decreaseHide = YES;
+    numberButton.increaseImage = [UIImage imageNamed:@"increase_meituan"];
+    numberButton.decreaseImage = [UIImage imageNamed:@"decrease_meituan"];
+    
+    numberButton.numberBlock = ^(NSString *num){
+        NSLog(@"%@",num);
+    };
+    
+    [self.view addSubview:numberButton];
+```
 
 ##使用xib创建
 在控制器界面拖入UIView控件,在右侧的设置栏中将class名修改为PPNumberButton,按回车就OK了.
 
-![示例图](https://github.com/jkpang/PPNumberButton/blob/master/Picture/photo.png)
+![示例图](https://github.com/jkpang/PPNumberButton/blob/master/Picture/photo1.png)
 
 _*注意!如果有的同学将控件拖线到代码中,千万不要忘记在拖线的代码文件中导入 "PPNumberButton.h"头文件,否则会报错.*_
+
+**可以在IB界面设置相关属性**
+![示例图](https://github.com/jkpang/PPNumberButton/blob/master/Picture/photo2.png)
 
 ====
 因为之前的项目中需要,在网上找了好多都不符合要求,干脆自己花了点时间撸了一个,现在分享出来,希望能帮到有需要的人。 如果你觉得不错,希望点个Star鼓励一下
 ####你的Star是我持续更新的动力!
 
 ##CocoaPods更新日志
+* 2016.11.03(tag:0.3.0)--重大更新:1.增加饿了么/美团外卖/百度外卖样式,2.调整自定义属性设置接口.
 * 2016.11.03(tag:0.2.0)--设置maxValue(最大值)与minValue(最小值)属性接口.
 * 2016.09.14(tag:0.1.2)--添加使用XIB创建时的实时显示
 * 2016.09.12(tag:0.1.1)--小细节优化
