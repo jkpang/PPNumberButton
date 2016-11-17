@@ -146,11 +146,11 @@
     
     if (sender == _increaseBtn)
     {
-        _timer = [NSTimer scheduledTimerWithTimeInterval:0.1f target:self selector:@selector(increase) userInfo:nil repeats:YES];
+        _timer = [NSTimer scheduledTimerWithTimeInterval:0.2f target:self selector:@selector(increase) userInfo:nil repeats:YES];
     }
     else
     {
-        _timer = [NSTimer scheduledTimerWithTimeInterval:0.1f target:self selector:@selector(decrease) userInfo:nil repeats:YES];
+        _timer = [NSTimer scheduledTimerWithTimeInterval:0.2f target:self selector:@selector(decrease) userInfo:nil repeats:YES];
     }
     [_timer fire];
 }
