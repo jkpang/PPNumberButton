@@ -39,13 +39,12 @@
 
 IB_DESIGNABLE
 @interface PPNumberButton : UIView
-/**
- *  通过类方法创建一个按钮实例对象
- */
+
+- (instancetype)initWithFrame:(CGRect)frame;
 + (instancetype)numberButtonWithFrame:(CGRect)frame;
 
 /** 加减按钮的Block回调*/
-@property (nonatomic, copy) void(^numberBlock)(NSString *number);
+@property (nonatomic, copy) void(^resultBlock)(NSString *number);
 /** 代理*/
 @property (nonatomic, weak) id<PPNumberButtonDelegate> delegate;
 
@@ -87,5 +86,5 @@ IB_DESIGNABLE
  字符串 nil, @"", @"  ", @"\n" Returns NO;
  其他 Returns YES.
  */
-- (BOOL)isNotBlank;
+- (BOOL)pp_isNotBlank;
 @end

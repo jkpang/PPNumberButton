@@ -130,9 +130,9 @@
     NSString *minValueString = [NSString stringWithFormat:@"%ld",_minValue];
     NSString *maxValueString = [NSString stringWithFormat:@"%ld",_maxValue];
     
-    [textField.text isNotBlank] == NO || textField.text.integerValue < _minValue ? _textField.text = minValueString : nil;
+    [textField.text pp_isNotBlank] == NO || textField.text.integerValue < _minValue ? _textField.text = minValueString : nil;
     textField.text.integerValue > _maxValue ? _textField.text = maxValueString : nil;
-    _numberBlock ? _numberBlock(_textField.text) : nil;
+    _resultBlock ? _resultBlock(_textField.text) : nil;
     _delegate ? [_delegate pp_numberButton:self number:_textField.text] : nil;
 }
 
@@ -168,7 +168,7 @@
  */
 - (void)increase
 {
-    [_textField.text isNotBlank] == NO ? _textField.text = [NSString stringWithFormat:@"%ld",_minValue] : nil;
+    [_textField.text pp_isNotBlank] == NO ? _textField.text = [NSString stringWithFormat:@"%ld",_minValue] : nil;
     NSInteger number = [_textField.text integerValue] + 1;
     
     if (number <= _maxValue)
@@ -186,7 +186,7 @@
         }
         
         _textField.text = [NSString stringWithFormat:@"%ld", number];
-        _numberBlock ? _numberBlock(_textField.text) : nil;
+        _resultBlock ? _resultBlock(_textField.text) : nil;
         _delegate ? [_delegate pp_numberButton:self number:_textField.text] : nil;
     }
     else
@@ -201,13 +201,13 @@
  */
 - (void)decrease
 {
-    [_textField.text isNotBlank] == NO ? _textField.text = [NSString stringWithFormat:@"%ld",_minValue] : nil;
+    [_textField.text pp_isNotBlank] == NO ? _textField.text = [NSString stringWithFormat:@"%ld",_minValue] : nil;
     NSInteger number = [_textField.text integerValue] - 1;
     
     if (number >= _minValue)
     {
         _textField.text = [NSString stringWithFormat:@"%ld", number];
-        _numberBlock ? _numberBlock(_textField.text) : nil;
+        _resultBlock ? _resultBlock(_textField.text) : nil;
         _delegate ? [_delegate pp_numberButton:self number:_textField.text] : nil;
     }
     else
@@ -341,7 +341,7 @@
 #pragma mark - NSString分类
 
 @implementation NSString (PPNumberButton)
-- (BOOL)isNotBlank
+- (BOOL)pp_isNotBlank
 {
     NSCharacterSet *blank = [NSCharacterSet whitespaceAndNewlineCharacterSet];
     for (NSInteger i = 0; i < self.length; ++i)

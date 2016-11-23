@@ -60,7 +60,7 @@ then
     numberButton.increaseTitle = @"＋";
     numberButton.decreaseTitle = @"－";
     
-    numberButton.numberBlock = ^(NSString *num){
+    numberButton.resultBlock = ^(NSString *num){
         NSLog(@"%@",num);
     };
     [self.view addSubview:numberButton];
@@ -74,7 +74,7 @@ then
     numberButton.increaseTitle = @"＋";
     numberButton.decreaseTitle = @"－";
     
-    numberButton.numberBlock = ^(NSString *num){
+    numberButton.resultBlock = ^(NSString *num){
         NSLog(@"%@",num);
     };
     
@@ -89,7 +89,7 @@ then
     numberButton.increaseImage = [UIImage imageNamed:@"increase_taobao"];
     numberButton.decreaseImage = [UIImage imageNamed:@"decrease_taobao"];
     
-    numberButton.numberBlock = ^(NSString *num){
+    numberButton.resultBlock = ^(NSString *num){
         NSLog(@"%@",num);
     };
     
@@ -104,7 +104,7 @@ then
     numberButton.increaseImage = [UIImage imageNamed:@"increase_meituan"];
     numberButton.decreaseImage = [UIImage imageNamed:@"decrease_meituan"];
     
-    numberButton.numberBlock = ^(NSString *num){
+    numberButton.resultBlock = ^(NSString *num){
         NSLog(@"%@",num);
     };
     
