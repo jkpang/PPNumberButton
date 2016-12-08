@@ -109,17 +109,9 @@
     _textField.frame = CGRectMake(_height, 0, _width - 2*_height, _height);
     _increaseBtn.frame = CGRectMake(_width - _height, 0, _height, _height);
     
-    // 当按钮为"减号按钮隐藏模式(饿了么/百度外卖/美团外卖按钮样式)"
-    if (_decreaseHide)
-    {
-        _textField.hidden = YES;
-        _textField.text = [NSString stringWithFormat:@"%ld",_minValue-1];
-        _decreaseBtn.alpha = 0;
+    if (_decreaseHide && _textField.text.integerValue < _minValue){
         _decreaseBtn.frame = CGRectMake(_width-_height, 0, _height, _height);
-        self.backgroundColor = [UIColor clearColor];
-    }
-    else
-    {
+    } else {
         _decreaseBtn.frame = CGRectMake(0, 0, _height, _height);
     }
 }
@@ -127,13 +119,24 @@
 #pragma mark - UITextFieldDelegate
 - (void)textFieldDidEndEditing:(UITextField *)textField
 {
+    [self checkTextFieldNumberWithUpdate];
+    _resultBlock ? _resultBlock(_textField.text) : nil;
+    _delegate ? [_delegate pp_numberButton:self number:_textField.text] : nil;
+}
+
+/**
+ 检查TextField中数字的合法性,并修正
+ */
+- (void)checkTextFieldNumberWithUpdate
+{
     NSString *minValueString = [NSString stringWithFormat:@"%ld",_minValue];
     NSString *maxValueString = [NSString stringWithFormat:@"%ld",_maxValue];
     
-    [textField.text pp_isNotBlank] == NO || textField.text.integerValue < _minValue ? _textField.text = minValueString : nil;
-    textField.text.integerValue > _maxValue ? _textField.text = maxValueString : nil;
-    _resultBlock ? _resultBlock(_textField.text) : nil;
-    _delegate ? [_delegate pp_numberButton:self number:_textField.text] : nil;
+    if ([_textField.text pp_isNotBlank] == NO || _textField.text.integerValue < _minValue)
+    {
+        _textField.text = _decreaseHide ? [NSString stringWithFormat:@"%ld",minValueString.integerValue-1]:minValueString;
+    }
+    _textField.text.integerValue > _maxValue ? _textField.text = maxValueString : nil;
 }
 
 #pragma mark - 加减按钮点击响应
@@ -158,50 +161,46 @@
 /**
  手指松开
  */
-- (void)touchUp:(UIButton *)sender
-{
-    [self cleanTimer];
-}
+- (void)touchUp:(UIButton *)sender { [self cleanTimer]; }
 
 /**
  加运算
  */
 - (void)increase
 {
-    [_textField.text pp_isNotBlank] == NO ? _textField.text = [NSString stringWithFormat:@"%ld",_minValue] : nil;
-    NSInteger number = [_textField.text integerValue] + 1;
+    [self checkTextFieldNumberWithUpdate];
+    
+    NSInteger number = _textField.text.integerValue + 1;
     
     if (number <= _maxValue)
     {
         // 当按钮为"减号按钮隐藏模式",且输入框值==设定最小值,减号按钮展开
-        if (_decreaseHide && number == _minValue)
+        if (_decreaseHide && number==_minValue)
         {
             [self rotationAnimationMethod];
-            [UIView animateWithDuration:0.25 animations:^{
+            [UIView animateWithDuration:0.3f animations:^{
                 _decreaseBtn.alpha = 1;
                 _decreaseBtn.frame = CGRectMake(0, 0, _height, _height);
             } completion:^(BOOL finished) {
                 _textField.hidden = NO;
             }];
         }
-        
         _textField.text = [NSString stringWithFormat:@"%ld", number];
         _resultBlock ? _resultBlock(_textField.text) : nil;
         _delegate ? [_delegate pp_numberButton:self number:_textField.text] : nil;
     }
     else
     {
-        if (_shakeAnimation) { [self shakeAnimationMethod]; }
-        PPLog(@"已超过最大数量%ld",_maxValue);
+        if (_shakeAnimation) { [self shakeAnimationMethod]; } PPLog(@"已超过最大数量%ld",_maxValue);
     }
 }
-
 /**
  减运算
  */
 - (void)decrease
 {
-    [_textField.text pp_isNotBlank] == NO ? _textField.text = [NSString stringWithFormat:@"%ld",_minValue] : nil;
+    [self checkTextFieldNumberWithUpdate];
+    
     NSInteger number = [_textField.text integerValue] - 1;
     
     if (number >= _minValue)
@@ -213,10 +212,11 @@
     else
     {
         // 当按钮为"减号按钮隐藏模式",且输入框值 < 设定最小值,减号按钮隐藏
-        if (_decreaseHide && number < _minValue) {
+        if (_decreaseHide && number<_minValue)
+        {
             _textField.hidden = YES;
             [self rotationAnimationMethod];
-            [UIView animateWithDuration:0.25 animations:^{
+            [UIView animateWithDuration:0.3f animations:^{
                 _decreaseBtn.alpha = 0;
                 _decreaseBtn.frame = CGRectMake(_width-_height, 0, _height, _height);
             } completion:^(BOOL finished) {
@@ -224,8 +224,7 @@
             }];
             return;
         }
-        if (_shakeAnimation) { [self shakeAnimationMethod]; }
-        PPLog(@"数量不能小于%ld",_minValue);
+        if (_shakeAnimation) { [self shakeAnimationMethod]; } PPLog(@"数量不能小于%ld",_minValue);
     }
 }
 
@@ -234,14 +233,32 @@
  */
 - (void)cleanTimer
 {
-    if (_timer.isValid)
-    {
-        [_timer invalidate];
-        _timer = nil;
-    }
+    if (_timer.isValid) { [_timer invalidate] ; _timer = nil; }
 }
 
 #pragma mark - 加减按钮的属性设置
+
+- (void)setDecreaseHide:(BOOL)decreaseHide
+{
+    // 当按钮为"减号按钮隐藏模式(饿了么/百度外卖/美团外卖按钮样式)"
+    if (decreaseHide)
+    {
+        if (_textField.text.integerValue <= _minValue)
+        {
+            _textField.hidden = YES;
+            _decreaseBtn.alpha = 0;
+            _textField.text = [NSString stringWithFormat:@"%ld",_minValue-1];
+            _decreaseBtn.frame = CGRectMake(_width-_height, 0, _height, _height);
+        }
+        self.backgroundColor = [UIColor clearColor];
+    }
+    else
+    {
+        _decreaseBtn.frame = CGRectMake(0, 0, _height, _height);
+    }
+    _decreaseHide = decreaseHide;
+}
+
 - (void)setMinValue:(NSInteger)minValue
 {
     _minValue = minValue;
@@ -252,13 +269,14 @@
 {
     _borderColor = borderColor;
     
-    _decreaseBtn.layer.borderColor = [borderColor CGColor];
-    _increaseBtn.layer.borderColor = [borderColor CGColor];
+    self.layer.borderWidth = 0.5;
     self.layer.borderColor = [borderColor CGColor];
     
     _decreaseBtn.layer.borderWidth = 0.5;
+    _decreaseBtn.layer.borderColor = [borderColor CGColor];
+    
     _increaseBtn.layer.borderWidth = 0.5;
-    self.layer.borderWidth = 0.5;
+    _increaseBtn.layer.borderColor = [borderColor CGColor];
 }
 
 - (void)setButtonTitleFont:(CGFloat)buttonTitleFont
@@ -293,14 +311,24 @@
 }
 
 #pragma mark - 输入框中的内容设置
-- (NSString *)currentNumber
-{
-    return _textField.text;
-}
+- (NSInteger)currentNumber { return _textField.text.integerValue; }
 
-- (void)setCurrentNumber:(NSString *)currentNumber
+- (void)setCurrentNumber:(NSInteger)currentNumber
 {
-    _textField.text = currentNumber;
+    if (_decreaseHide && currentNumber < _minValue)
+    {
+        _textField.hidden = YES;
+        _decreaseBtn.alpha = 0;
+        _decreaseBtn.frame = CGRectMake(_width-_height, 0, _height, _height);
+    }
+    else
+    {
+        _textField.hidden = NO;
+        _decreaseBtn.alpha = 1;
+        _decreaseBtn.frame = CGRectMake(0, 0, _height, _height);
+    }
+    _textField.text = [NSString stringWithFormat:@"%ld",currentNumber];
+    [self checkTextFieldNumberWithUpdate];
 }
 
 - (void)setInputFieldFont:(CGFloat)inputFieldFont
@@ -329,14 +357,12 @@
 {
     CABasicAnimation *rotationAnimation = [CABasicAnimation animationWithKeyPath:@"transform.rotation"];
     rotationAnimation.toValue = @(M_PI*2);
-    rotationAnimation.duration = 0.25;
+    rotationAnimation.duration = 0.3f;
     rotationAnimation.fillMode = kCAFillModeForwards;
     rotationAnimation.removedOnCompletion = NO;
     [_decreaseBtn.layer addAnimation:rotationAnimation forKey:nil];
 }
-
 @end
-
 
 #pragma mark - NSString分类
 

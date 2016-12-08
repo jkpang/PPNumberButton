@@ -65,7 +65,7 @@
     numberButton.inputFieldFont = 23;
     numberButton.increaseTitle = @"＋";
     numberButton.decreaseTitle = @"－";
-    
+    numberButton.currentNumber = 777;
     numberButton.resultBlock = ^(NSString *num){
         NSLog(@"%@",num);
     };
@@ -82,7 +82,7 @@
     numberButton.borderColor = [UIColor grayColor];
     numberButton.increaseTitle = @"＋";
     numberButton.decreaseTitle = @"－";
-    
+    numberButton.currentNumber = 777;
     numberButton.resultBlock = ^(NSString *num){
         NSLog(@"%@",num);
     };
@@ -118,7 +118,7 @@
     numberButton.decreaseHide = YES;
     numberButton.increaseImage = [UIImage imageNamed:@"increase_meituan"];
     numberButton.decreaseImage = [UIImage imageNamed:@"decrease_meituan"];
-    
+    numberButton.currentNumber = -777;
     numberButton.resultBlock = ^(NSString *num){
         NSLog(@"%@",num);
     };

@@ -58,7 +58,7 @@ IB_DESIGNABLE
 @property (nonatomic, strong ) IBInspectable UIColor *borderColor;
 
 /** 输入框中的内容 */
-@property (nonatomic, copy   ) NSString *currentNumber;
+@property (nonatomic, assign ) NSInteger currentNumber;
 /** 输入框中的字体大小 */
 @property (nonatomic, assign ) IBInspectable CGFloat inputFieldFont;
 
