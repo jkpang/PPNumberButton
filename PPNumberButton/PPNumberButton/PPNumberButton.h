@@ -49,10 +49,12 @@ IB_DESIGNABLE
 @property (nonatomic, weak) id<PPNumberButtonDelegate> delegate;
 
 #pragma mark - 自定义样式属性设置
-/** 是否开启抖动动画,默认NO*/
+/** 是否开启抖动动画, default is NO*/
 @property (nonatomic, assign ) IBInspectable BOOL shakeAnimation;
 /** 为YES时,初始化时减号按钮隐藏(饿了么/百度外卖/美团外卖按钮模式),default is NO*/
 @property (nonatomic, assign ) IBInspectable BOOL decreaseHide;
+/** 是否可以使用键盘输入,default is YES*/
+@property (nonatomic, assign, getter=isEditing) IBInspectable BOOL editing;
 
 /** 设置边框的颜色,如果没有设置颜色,就没有边框 */
 @property (nonatomic, strong ) IBInspectable UIColor *borderColor;

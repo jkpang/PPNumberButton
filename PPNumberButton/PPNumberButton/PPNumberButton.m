@@ -259,6 +259,12 @@
     _decreaseHide = decreaseHide;
 }
 
+- (void)setEditing:(BOOL)editing
+{
+    _editing = editing;
+    _textField.enabled = editing;
+}
+
 - (void)setMinValue:(NSInteger)minValue
 {
     _minValue = minValue;
