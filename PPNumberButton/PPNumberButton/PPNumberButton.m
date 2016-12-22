@@ -109,7 +109,7 @@
     _textField.frame = CGRectMake(_height, 0, _width - 2*_height, _height);
     _increaseBtn.frame = CGRectMake(_width - _height, 0, _height, _height);
     
-    if (_decreaseHide && _textField.text.integerValue < _minValue){
+    if (_decreaseHide && _textField.text.integerValue < _minValue) {
         _decreaseBtn.frame = CGRectMake(_width-_height, 0, _height, _height);
     } else {
         _decreaseBtn.frame = CGRectMake(0, 0, _height, _height);
@@ -120,23 +120,7 @@
 - (void)textFieldDidEndEditing:(UITextField *)textField
 {
     [self checkTextFieldNumberWithUpdate];
-    _resultBlock ? _resultBlock(_textField.text) : nil;
-    _delegate ? [_delegate pp_numberButton:self number:_textField.text] : nil;
-}
-
-/**
- 检查TextField中数字的合法性,并修正
- */
-- (void)checkTextFieldNumberWithUpdate
-{
-    NSString *minValueString = [NSString stringWithFormat:@"%ld",_minValue];
-    NSString *maxValueString = [NSString stringWithFormat:@"%ld",_maxValue];
-    
-    if ([_textField.text pp_isNotBlank] == NO || _textField.text.integerValue < _minValue)
-    {
-        _textField.text = _decreaseHide ? [NSString stringWithFormat:@"%ld",minValueString.integerValue-1]:minValueString;
-    }
-    _textField.text.integerValue > _maxValue ? _textField.text = maxValueString : nil;
+    [self buttonClickCallBackWithIncreaseStatus:NO];
 }
 
 #pragma mark - 加减按钮点击响应
@@ -147,12 +131,9 @@
 {
     [_textField resignFirstResponder];
     
-    if (sender == _increaseBtn)
-    {
+    if (sender == _increaseBtn){
         _timer = [NSTimer scheduledTimerWithTimeInterval:0.1f target:self selector:@selector(increase) userInfo:nil repeats:YES];
-    }
-    else
-    {
+    } else {
         _timer = [NSTimer scheduledTimerWithTimeInterval:0.1f target:self selector:@selector(decrease) userInfo:nil repeats:YES];
     }
     [_timer fire];
@@ -186,14 +167,15 @@
             }];
         }
         _textField.text = [NSString stringWithFormat:@"%ld", number];
-        _resultBlock ? _resultBlock(_textField.text) : nil;
-        _delegate ? [_delegate pp_numberButton:self number:_textField.text] : nil;
+        
+        [self buttonClickCallBackWithIncreaseStatus:YES];
     }
     else
     {
         if (_shakeAnimation) { [self shakeAnimationMethod]; } PPLog(@"已超过最大数量%ld",_maxValue);
     }
 }
+
 /**
  减运算
  */
@@ -206,8 +188,7 @@
     if (number >= _minValue)
     {
         _textField.text = [NSString stringWithFormat:@"%ld", number];
-        _resultBlock ? _resultBlock(_textField.text) : nil;
-        _delegate ? [_delegate pp_numberButton:self number:_textField.text] : nil;
+        [self buttonClickCallBackWithIncreaseStatus:NO];
     }
     else
     {
@@ -215,17 +196,46 @@
         if (_decreaseHide && number<_minValue)
         {
             _textField.hidden = YES;
+            _textField.text = [NSString stringWithFormat:@"%ld",_minValue-1];
+            
+            [self buttonClickCallBackWithIncreaseStatus:NO];
             [self rotationAnimationMethod];
+            
             [UIView animateWithDuration:0.3f animations:^{
                 _decreaseBtn.alpha = 0;
                 _decreaseBtn.frame = CGRectMake(_width-_height, 0, _height, _height);
-            } completion:^(BOOL finished) {
-                _textField.text = [NSString stringWithFormat:@"%ld",_minValue-1];
             }];
+
             return;
         }
         if (_shakeAnimation) { [self shakeAnimationMethod]; } PPLog(@"数量不能小于%ld",_minValue);
     }
+}
+
+/**
+ 点击响应
+ */
+- (void)buttonClickCallBackWithIncreaseStatus:(BOOL)increaseStatus
+{
+    _resultBlock ? _resultBlock(_textField.text.integerValue, increaseStatus) : nil;
+    if ([_delegate respondsToSelector:@selector(pp_numberButton: number: increaseStatus:)]) {
+        [_delegate pp_numberButton:self number:_textField.text.integerValue increaseStatus:increaseStatus];
+    }
+}
+
+/**
+ 检查TextField中数字的合法性,并修正
+ */
+- (void)checkTextFieldNumberWithUpdate
+{
+    NSString *minValueString = [NSString stringWithFormat:@"%ld",_minValue];
+    NSString *maxValueString = [NSString stringWithFormat:@"%ld",_maxValue];
+    
+    if ([_textField.text pp_isNotBlank] == NO || _textField.text.integerValue < _minValue)
+    {
+        _textField.text = _decreaseHide ? [NSString stringWithFormat:@"%ld",minValueString.integerValue-1]:minValueString;
+    }
+    _textField.text.integerValue > _maxValue ? _textField.text = maxValueString : nil;
 }
 
 /**

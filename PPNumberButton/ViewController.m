@@ -32,7 +32,7 @@
 #import "ViewController.h"
 #import "PPNumberButton.h"
 
-@interface ViewController ()
+@interface ViewController ()<PPNumberButtonDelegate>
 
 @end
 
@@ -66,10 +66,17 @@
     numberButton.increaseTitle = @"＋";
     numberButton.decreaseTitle = @"－";
     numberButton.currentNumber = 777;
-    numberButton.resultBlock = ^(NSString *num){
-        NSLog(@"%@",num);
+    numberButton.delegate = self;
+    
+    numberButton.resultBlock = ^(NSInteger num ,BOOL increaseStatus){
+        NSLog(@"%ld",num);
     };
     [self.view addSubview:numberButton];
+}
+
+- (void)pp_numberButton:(__kindof UIView *)numberButton number:(NSInteger)number increaseStatus:(BOOL)increaseStatus
+{
+    NSLog(@"%@",increaseStatus ? @"加运算":@"减运算");
 }
 
 /**
@@ -83,8 +90,8 @@
     numberButton.increaseTitle = @"＋";
     numberButton.decreaseTitle = @"－";
     numberButton.currentNumber = 777;
-    numberButton.resultBlock = ^(NSString *num){
-        NSLog(@"%@",num);
+    numberButton.resultBlock = ^(NSInteger num ,BOOL increaseStatus){
+        NSLog(@"%ld",num);
     };
     
     [self.view addSubview:numberButton];
@@ -101,8 +108,8 @@
     numberButton.increaseImage = [UIImage imageNamed:@"increase_taobao"];
     numberButton.decreaseImage = [UIImage imageNamed:@"decrease_taobao"];
     
-    numberButton.resultBlock = ^(NSString *num){
-        NSLog(@"%@",num);
+    numberButton.resultBlock = ^(NSInteger num ,BOOL increaseStatus){
+        NSLog(@"%ld",num);
     };
     
     [self.view addSubview:numberButton];
@@ -119,8 +126,8 @@
     numberButton.increaseImage = [UIImage imageNamed:@"increase_meituan"];
     numberButton.decreaseImage = [UIImage imageNamed:@"decrease_meituan"];
     numberButton.currentNumber = -777;
-    numberButton.resultBlock = ^(NSString *num){
-        NSLog(@"%@",num);
+    numberButton.resultBlock = ^(NSInteger num ,BOOL increaseStatus){
+        NSLog(@"%ld",num);
     };
     
     [self.view addSubview:numberButton];

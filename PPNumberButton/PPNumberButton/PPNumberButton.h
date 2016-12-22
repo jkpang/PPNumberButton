@@ -33,9 +33,18 @@
 
 @protocol PPNumberButtonDelegate <NSObject>
 @optional
-/** 加减按钮点击响应的代理回调*/
-- (void)pp_numberButton:(__kindof UIView *)numberButton number:(NSString *)number;
+
+/**
+ 加减代理回调
+
+ @param numberButton 按钮
+ @param number 结果
+ @param increaseStatus 是否为加状态
+ */
+- (void)pp_numberButton:(__kindof UIView *)numberButton number:(NSInteger)number increaseStatus:(BOOL)increaseStatus;
+
 @end
+
 
 IB_DESIGNABLE
 @interface PPNumberButton : UIView
@@ -44,7 +53,7 @@ IB_DESIGNABLE
 + (instancetype)numberButtonWithFrame:(CGRect)frame;
 
 /** 加减按钮的Block回调*/
-@property (nonatomic, copy) void(^resultBlock)(NSString *number);
+@property (nonatomic, copy) void(^resultBlock)(NSInteger number, BOOL increaseStatus/* 是否为加状态*/);
 /** 代理*/
 @property (nonatomic, weak) id<PPNumberButtonDelegate> delegate;
 
