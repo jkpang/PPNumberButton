@@ -6,6 +6,30 @@
 //  Copyright © 2016年 AndyPang. All rights reserved.
 //
 
+/*
+ *********************************************************************************
+ *
+ *⭐️⭐️⭐️ 新建 PP-iOS学习交流群: 323408051 欢迎加入!!! ⭐️⭐️⭐️
+ *
+ * 如果您在使用 PPNumberButton 的过程中出现bug或有更好的建议,还请及时以下列方式联系我,我会及
+ * 时修复bug,解决问题.
+ *
+ * Weibo : CoderPang
+ * Email : jkpang@outlook.com
+ * QQ 群 : 323408051
+ * GitHub: https://github.com/jkpang
+ *
+ * PS:我的另外两个很好用的封装,欢迎使用!
+ * 1.对AFNetworking 3.x 与YYCache的二次封装,一句代码搞定数据请求与缓存,告别FMDB:
+ *   GitHub:https://github.com/jkpang/PPNetworkHelper
+ * 2.一行代码获取通讯录联系人,并进行A~Z精准排序(已处理姓名所有字符的排序问题):
+ *   GitHub:https://github.com/jkpang/PPGetAddressBook
+ *
+ * 如果 PPNumberButton 好用,希望您能Star支持,你的 ⭐️ 是我持续更新的动力!
+ *********************************************************************************
+ */
+
+
 #import "PPNumberButton.h"
 
 #ifdef DEBUG
@@ -37,8 +61,7 @@
 #pragma mark - 初始化
 - (instancetype)initWithFrame:(CGRect)frame
 {
-    if (self = [super initWithFrame:frame])
-    {
+    if (self = [super initWithFrame:frame]) {
         [self setupUI];
         //整个控件的默认尺寸(和某宝上面的按钮同样大小)
         if(CGRectIsEmpty(frame)) {self.frame = CGRectMake(0, 0, 110, 30);};
@@ -48,8 +71,7 @@
 
 - (instancetype)initWithCoder:(NSCoder *)coder
 {
-    if (self = [super initWithCoder:coder])
-    {
+    if (self = [super initWithCoder:coder]) {
         [self setupUI];
     }
     return self;
@@ -131,7 +153,7 @@
 {
     [_textField resignFirstResponder];
     
-    if (sender == _increaseBtn){
+    if (sender == _increaseBtn) {
         _timer = [NSTimer scheduledTimerWithTimeInterval:0.1f target:self selector:@selector(increase) userInfo:nil repeats:YES];
     } else {
         _timer = [NSTimer scheduledTimerWithTimeInterval:0.1f target:self selector:@selector(decrease) userInfo:nil repeats:YES];
@@ -153,11 +175,9 @@
     
     NSInteger number = _textField.text.integerValue + 1;
     
-    if (number <= _maxValue)
-    {
+    if (number <= _maxValue) {
         // 当按钮为"减号按钮隐藏模式",且输入框值==设定最小值,减号按钮展开
-        if (_decreaseHide && number==_minValue)
-        {
+        if (_decreaseHide && number==_minValue) {
             [self rotationAnimationMethod];
             [UIView animateWithDuration:0.3f animations:^{
                 _decreaseBtn.alpha = 1;
@@ -169,9 +189,7 @@
         _textField.text = [NSString stringWithFormat:@"%ld", number];
         
         [self buttonClickCallBackWithIncreaseStatus:YES];
-    }
-    else
-    {
+    } else {
         if (_shakeAnimation) { [self shakeAnimationMethod]; } PPLog(@"已超过最大数量%ld",_maxValue);
     }
 }
@@ -185,16 +203,12 @@
     
     NSInteger number = [_textField.text integerValue] - 1;
     
-    if (number >= _minValue)
-    {
+    if (number >= _minValue) {
         _textField.text = [NSString stringWithFormat:@"%ld", number];
         [self buttonClickCallBackWithIncreaseStatus:NO];
-    }
-    else
-    {
+    } else {
         // 当按钮为"减号按钮隐藏模式",且输入框值 < 设定最小值,减号按钮隐藏
-        if (_decreaseHide && number<_minValue)
-        {
+        if (_decreaseHide && number<_minValue) {
             _textField.hidden = YES;
             _textField.text = [NSString stringWithFormat:@"%ld",_minValue-1];
             
@@ -231,8 +245,7 @@
     NSString *minValueString = [NSString stringWithFormat:@"%ld",_minValue];
     NSString *maxValueString = [NSString stringWithFormat:@"%ld",_maxValue];
     
-    if ([_textField.text pp_isNotBlank] == NO || _textField.text.integerValue < _minValue)
-    {
+    if ([_textField.text pp_isNotBlank] == NO || _textField.text.integerValue < _minValue) {
         _textField.text = _decreaseHide ? [NSString stringWithFormat:@"%ld",minValueString.integerValue-1]:minValueString;
     }
     _textField.text.integerValue > _maxValue ? _textField.text = maxValueString : nil;
@@ -251,19 +264,15 @@
 - (void)setDecreaseHide:(BOOL)decreaseHide
 {
     // 当按钮为"减号按钮隐藏模式(饿了么/百度外卖/美团外卖按钮样式)"
-    if (decreaseHide)
-    {
-        if (_textField.text.integerValue <= _minValue)
-        {
+    if (decreaseHide) {
+        if (_textField.text.integerValue <= _minValue) {
             _textField.hidden = YES;
             _decreaseBtn.alpha = 0;
             _textField.text = [NSString stringWithFormat:@"%ld",_minValue-1];
             _decreaseBtn.frame = CGRectMake(_width-_height, 0, _height, _height);
         }
         self.backgroundColor = [UIColor clearColor];
-    }
-    else
-    {
+    } else {
         _decreaseBtn.frame = CGRectMake(0, 0, _height, _height);
     }
     _decreaseHide = decreaseHide;
@@ -331,14 +340,11 @@
 
 - (void)setCurrentNumber:(NSInteger)currentNumber
 {
-    if (_decreaseHide && currentNumber < _minValue)
-    {
+    if (_decreaseHide && currentNumber < _minValue) {
         _textField.hidden = YES;
         _decreaseBtn.alpha = 0;
         _decreaseBtn.frame = CGRectMake(_width-_height, 0, _height, _height);
-    }
-    else
-    {
+    } else {
         _textField.hidden = NO;
         _decreaseBtn.alpha = 1;
         _decreaseBtn.frame = CGRectMake(0, 0, _height, _height);
@@ -386,11 +392,9 @@
 - (BOOL)pp_isNotBlank
 {
     NSCharacterSet *blank = [NSCharacterSet whitespaceAndNewlineCharacterSet];
-    for (NSInteger i = 0; i < self.length; ++i)
-    {
+    for (NSInteger i = 0; i < self.length; ++i) {
         unichar c = [self characterAtIndex:i];
-        if (![blank characterIsMember:c])
-        {
+        if (![blank characterIsMember:c]) {
             return YES;
         }
     }
