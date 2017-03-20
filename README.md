@@ -2,7 +2,7 @@
 
 ![](https://img.shields.io/badge/platform-iOS-red.svg) ![](https://img.shields.io/badge/language-Objective--C-orange.svg) ![](https://img.shields.io/badge/pod-v0.6.0-blue.svg) ![](https://img.shields.io/badge/license-MIT%20License-brightgreen.svg)  [![](https://img.shields.io/badge/weibo-%40CoderPang-yellow.svg)](http://weibo.com/5743737098/profile?rightmod=1&wvr=6&mod=personinfo&is_all=1)
 
-###iOS中一款高度可定制性商品计数按钮,使用简单!
+### iOS中一款高度可定制性商品计数按钮,使用简单!
 
 * 支持自定义加/减按钮的标题内容、背景图片;
 * 支持设置边框颜色;
@@ -13,29 +13,29 @@
 * 支持设置maxValue(最大值)与minValue(最小值).
 * 支持按钮自定义为京东/淘宝样式,饿了么/美团外卖/百度外卖样式;
 
-###新建 PP-iOS学习交流群 : 323408051 有关于PP系列封装的问题和iOS技术可以在此群讨论
+### 新建 PP-iOS学习交流群 : 323408051 有关于PP系列封装的问题和iOS技术可以在此群讨论
 [简书地址](http://www.jianshu.com/p/0b6f53a1ccaf) ;
 
-####如果你需要Swift版本,请戳: https://github.com/jkpang/PPNumberButtonSwift
+#### 如果你需要Swift版本,请戳: https://github.com/jkpang/PPNumberButtonSwift
 
 ![示例图](https://github.com/jkpang/PPNumberButton/blob/master/Picture/PPNumberButton.gif)
 
-##Requirements 要求
+## Requirements 要求
 * iOS 7+
 * Xcode 8+
 
-##Installation 安装
-###1.手动安装:
+## Installation 安装
+### 1.手动安装:
 下载DEMO后,将子文件夹PPNumberButton拖入到项目中, 导入头文件PPNumberButton.h开始使用.
-###2.CocoaPods安装:
+### 2.CocoaPods安装:
 first
 `pod 'PPNumberButton'
 then
 `pod install或pod install --no-repo-update`
 
 如果发现pod search PPNumberButton 不是最新版本，在终端执行pod setup命令更新本地spec镜像缓存(时间可能有点长),重新搜索就OK了
-##Usage 使用方法
-####实例化方法
+## Usage 使用方法
+#### 实例化方法
 `[[PPNumberButton alloc] init];`:默认的frame为CGRectMake(0, 0, 110, 30)
 
 或
@@ -45,7 +45,7 @@ then
 或
 
 `[PPNumberButton numberButtonWithFrame:frame];`: 类方法创建
-###1.自定义加减按钮文字标题
+### 1.自定义加减按钮文字标题
 
 ```objc
  	PPNumberButton *numberButton = [PPNumberButton numberButtonWithFrame:CGRectMake(100, 100, 110, 30)];
@@ -65,7 +65,7 @@ then
     };
     [self.view addSubview:numberButton];
 ```
-###2.边框状态
+### 2.边框状态
 
 ```objc
 	PPNumberButton *numberButton = [PPNumberButton numberButtonWithFrame:CGRectMake(100, 160, 150, 30)];
@@ -81,7 +81,7 @@ then
     [self.view addSubview:numberButton];
 
 ```
-###3.自定义加减按钮背景图片
+### 3.自定义加减按钮背景图片
 
 ```objc
  	PPNumberButton *numberButton = [PPNumberButton numberButtonWithFrame:CGRectMake(100, 220, 100, 30)];
@@ -95,7 +95,7 @@ then
     
     [self.view addSubview:numberButton];
 ```
-###4.饿了么,美团外卖,百度外卖样式
+### 4.饿了么,美团外卖,百度外卖样式
 
 ```objc
 	PPNumberButton *numberButton = [PPNumberButton numberButtonWithFrame:CGRectMake(100, 280, 100, 30)];
@@ -111,7 +111,7 @@ then
     [self.view addSubview:numberButton];
 ```
 
-##使用xib创建
+## 使用xib创建
 在控制器界面拖入UIView控件,在右侧的设置栏中将class名修改为PPNumberButton,按回车就OK了.
 
 ![示例图](https://github.com/jkpang/PPNumberButton/blob/master/Picture/photo1.png)
@@ -123,9 +123,9 @@ _*注意!如果有的同学将控件拖线到代码中,千万不要忘记在拖�
 
 ====
 因为之前的项目中需要,在网上找了好多都不符合要求,干脆自己花了点时间撸了一个,现在分享出来,希望能帮到有需要的人。 如果你觉得不错,希望点个Star鼓励一下
-####你的Star是我持续更新的动力!
+#### 你的Star是我持续更新的动力!
 
-##CocoaPods更新日志
+## CocoaPods更新日志
 * 2016.12.22(tag:0.6.0)--1.将代理与Block回调的结果数字的类型 由 NSString -> NSInteger;
 								  2.代理与Block回调结果增加 increaseStatus(加运算状态)
 								  3.修复有时代理方法没有被实现导致Crash的Bug.
@@ -139,14 +139,14 @@ _*注意!如果有的同学将控件拖线到代码中,千万不要忘记在拖�
 * 2016.09.12(tag:0.1.1)--小细节优化
 * 2016.09.03(tag:0.1.0)--Pods初始化
 
-##联系方式:
+## 联系方式:
 * Weibo : @CoderPang
 * Email : jkpang@outlook.com
 * QQ群 : 323408051
 
 ![PP-iOS学习交流群群二维码](https://github.com/jkpang/PPCounter/blob/master/PP-iOS%E5%AD%A6%E4%B9%A0%E4%BA%A4%E6%B5%81%E7%BE%A4%E7%BE%A4%E4%BA%8C%E7%BB%B4%E7%A0%81.png)
 
-##许可证
+## 许可证
 PPNumberButton 使用 MIT 许可证，详情见 LICENSE 文件。
 
 
