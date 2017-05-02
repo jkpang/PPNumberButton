@@ -1,6 +1,6 @@
 ![](https://github.com/jkpang/PPNumberButton/blob/master/Picture/PPNumberButton.png)
 
-![](https://img.shields.io/badge/platform-iOS-red.svg) ![](https://img.shields.io/badge/language-Objective--C-orange.svg) ![](https://img.shields.io/badge/pod-v0.6.0-blue.svg) ![](https://img.shields.io/badge/license-MIT%20License-brightgreen.svg)  [![](https://img.shields.io/badge/weibo-%40CoderPang-yellow.svg)](http://weibo.com/5743737098/profile?rightmod=1&wvr=6&mod=personinfo&is_all=1)
+![](https://img.shields.io/badge/platform-iOS-red.svg) ![](https://img.shields.io/badge/language-Objective--C-orange.svg) ![](https://img.shields.io/cocoapods/v/PPNumberButton.svg?style=flat) ![](https://img.shields.io/cocoapods/dt/PPNumberButton.svg) ![](https://img.shields.io/badge/license-MIT%20License-brightgreen.svg)  [![](https://img.shields.io/badge/weibo-%40CoderPang-yellow.svg)](http://weibo.com/5743737098/profile?rightmod=1&wvr=6&mod=personinfo&is_all=1)
 
 ### iOS中一款高度可定制性商品计数按钮,使用简单!
 
@@ -140,7 +140,7 @@ _*注意!如果有的同学将控件拖线到代码中,千万不要忘记在拖�
 * 2016.09.03(tag:0.1.0)--Pods初始化
 
 ## 联系方式:
-* Weibo : @CoderPang
+* Weibo : [@jkpang-庞](http://weibo.com/5743737098/profile?rightmod=1&wvr=6&mod=personinfo&is_all=1)
 * Email : jkpang@outlook.com
 * QQ群 : 323408051
 
