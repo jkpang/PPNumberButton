@@ -1,52 +1,27 @@
 //
-//  ViewController.m
+//  PPViewController1.m
 //  PPNumberButton
 //
-//  Created by AndyPang on 16/8/31.
-//  Copyright © 2016年 AndyPang. All rights reserved.
+//  Created by YiAi on 2017/7/5.
+//  Copyright © 2017年 AndyPang. All rights reserved.
 //
 
-/*
- *********************************************************************************
- *
- *⭐️⭐️⭐️ 新建 PP-iOS学习交流群: 323408051 欢迎加入!!! ⭐️⭐️⭐️
- *
- * 如果您在使用 PPNumberButton 的过程中出现bug或有更好的建议,还请及时以下列方式联系我,我会及
- * 时修复bug,解决问题.
- *
- * Weibo : CoderPang
- * Email : jkpang@outlook.com
- * QQ 群 : 323408051
- * GitHub: https://github.com/jkpang
- *
- * PS:我的另外两个很好用的封装,欢迎使用!
- * 1.对AFNetworking 3.x 与YYCache的二次封装,一句代码搞定数据请求与缓存,告别FMDB:
- *   GitHub:https://github.com/jkpang/PPNetworkHelper
- * 2.一行代码获取通讯录联系人,并进行A~Z精准排序(已处理姓名所有字符的排序问题):
- *   GitHub:https://github.com/jkpang/PPGetAddressBook
- *
- * 如果 PPNumberButton 好用,希望您能Star支持,你的 ⭐️ 是我持续更新的动力!
- *********************************************************************************
- */
-
-#import "ViewController.h"
+#import "PPViewController1.h"
 #import "PPNumberButton.h"
 
-@interface ViewController ()<PPNumberButtonDelegate>
+@interface PPViewController1 () <PPNumberButtonDelegate>
 
 @end
 
-@implementation ViewController
+@implementation PPViewController1
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
     
     [self example1];
     [self example2];
     [self example3];
     [self example4];
-    
 }
 
 /**
@@ -67,6 +42,7 @@
     numberButton.decreaseTitle = @"－";
     numberButton.currentNumber = 777;
     numberButton.delegate = self;
+    numberButton.longPressSpaceTime = CGFLOAT_MAX;
     
     numberButton.resultBlock = ^(NSInteger num ,BOOL increaseStatus){
         NSLog(@"%ld",num);
@@ -138,9 +114,5 @@
     [self.view endEditing:YES];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 
 @end

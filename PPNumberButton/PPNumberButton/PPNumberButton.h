@@ -14,7 +14,7 @@
  * 如果您在使用 PPNumberButton 的过程中出现bug或有更好的建议,还请及时以下列方式联系我,我会及
  * 时修复bug,解决问题.
  *
- * Weibo : CoderPang
+ * Weibo : jkpang-庞
  * Email : jkpang@outlook.com
  * QQ 群 : 323408051
  * GitHub: https://github.com/jkpang
@@ -31,6 +31,7 @@
 
 #import <UIKit/UIKit.h>
 
+@class PPNumberButton;
 @protocol PPNumberButtonDelegate <NSObject>
 @optional
 
@@ -41,7 +42,7 @@
  @param number 结果
  @param increaseStatus 是否为加状态
  */
-- (void)pp_numberButton:(__kindof UIView *)numberButton number:(NSInteger)number increaseStatus:(BOOL)increaseStatus;
+- (void)pp_numberButton:(PPNumberButton *)numberButton number:(NSInteger)number increaseStatus:(BOOL)increaseStatus;
 
 @end
 
@@ -72,6 +73,9 @@ IB_DESIGNABLE
 @property (nonatomic, assign ) NSInteger currentNumber;
 /** 输入框中的字体大小 */
 @property (nonatomic, assign ) IBInspectable CGFloat inputFieldFont;
+
+/** 长按加减的时间间隔,默认0.1s,设置为 CGFLOAT_MAX 则关闭长按加减功能*/
+@property (nonatomic, assign ) IBInspectable CGFloat longPressSpaceTime;
 
 /** 加减按钮的字体大小 */
 @property (nonatomic, assign ) IBInspectable CGFloat buttonTitleFont;

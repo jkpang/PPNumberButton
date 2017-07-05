@@ -14,7 +14,7 @@
  * 如果您在使用 PPNumberButton 的过程中出现bug或有更好的建议,还请及时以下列方式联系我,我会及
  * 时修复bug,解决问题.
  *
- * Weibo : CoderPang
+ * Weibo : jkpang-庞
  * Email : jkpang@outlook.com
  * QQ 群 : 323408051
  * GitHub: https://github.com/jkpang
@@ -40,18 +40,18 @@
 
 
 @interface PPNumberButton () <UITextFieldDelegate>
+{
+    CGFloat _width;     // 控件自身的宽
+    CGFloat _height;    // 控件自身的高
+}
+/** 快速加减定时器*/
+@property (nonatomic, strong) NSTimer *timer;
 /** 减按钮*/
 @property (nonatomic, strong) UIButton *decreaseBtn;
 /** 加按钮*/
 @property (nonatomic, strong) UIButton *increaseBtn;
 /** 数量展示/输入框*/
 @property (nonatomic, strong) UITextField *textField;
-/** 快速加减定时器*/
-@property (nonatomic, strong) NSTimer *timer;
-/** 控件自身的宽*/
-@property (nonatomic, assign) CGFloat width;
-/** 控件自身的高*/
-@property (nonatomic, assign) CGFloat height;
 
 @end
 
@@ -81,23 +81,19 @@
 {
     return [[PPNumberButton alloc] initWithFrame:frame];
 }
+
 #pragma mark - 设置UI子控件
 - (void)setupUI
 {
-    self.backgroundColor = [UIColor whiteColor];
-    self.layer.cornerRadius = 3.f;
-    self.clipsToBounds = YES;
-    
     _minValue = 1;
     _maxValue = NSIntegerMax;
     _inputFieldFont = 15;
     _buttonTitleFont = 17;
+    _longPressSpaceTime = 0.1f;
     
     //加,减按钮
     _increaseBtn = [self creatButton];
     _decreaseBtn = [self creatButton];
-    [self addSubview:_decreaseBtn];
-    [self addSubview:_increaseBtn];
     
     //数量展示/输入框
     _textField = [[UITextField alloc] init];
@@ -107,7 +103,13 @@
     _textField.font = [UIFont systemFontOfSize:_inputFieldFont];
     _textField.text = [NSString stringWithFormat:@"%ld",_minValue];
     
+    [self addSubview:_decreaseBtn];
+    [self addSubview:_increaseBtn];
     [self addSubview:_textField];
+    
+    self.clipsToBounds = YES;
+    self.layer.cornerRadius = 3.f;
+    self.backgroundColor = [UIColor whiteColor];
 }
 
 //设置加减按钮的公共方法
@@ -146,29 +148,23 @@
 }
 
 #pragma mark - 加减按钮点击响应
-/**
- 点击: 单击逐次加减,长按连续快速加减
- */
+/// 点击: 单击逐次加减,长按连续快速加减
 - (void)touchDown:(UIButton *)sender
 {
     [_textField resignFirstResponder];
     
     if (sender == _increaseBtn) {
-        _timer = [NSTimer scheduledTimerWithTimeInterval:0.1f target:self selector:@selector(increase) userInfo:nil repeats:YES];
+        _timer = [NSTimer scheduledTimerWithTimeInterval:_longPressSpaceTime target:self selector:@selector(increase) userInfo:nil repeats:YES];
     } else {
-        _timer = [NSTimer scheduledTimerWithTimeInterval:0.1f target:self selector:@selector(decrease) userInfo:nil repeats:YES];
+        _timer = [NSTimer scheduledTimerWithTimeInterval:_longPressSpaceTime target:self selector:@selector(decrease) userInfo:nil repeats:YES];
     }
     [_timer fire];
 }
 
-/**
- 手指松开
- */
+/// 手指松开
 - (void)touchUp:(UIButton *)sender { [self cleanTimer]; }
 
-/**
- 加运算
- */
+/// 加运算
 - (void)increase
 {
     [self checkTextFieldNumberWithUpdate];
@@ -194,9 +190,7 @@
     }
 }
 
-/**
- 减运算
- */
+/// 减运算
 - (void)decrease
 {
     [self checkTextFieldNumberWithUpdate];
@@ -226,9 +220,7 @@
     }
 }
 
-/**
- 点击响应
- */
+/// 点击响应
 - (void)buttonClickCallBackWithIncreaseStatus:(BOOL)increaseStatus
 {
     _resultBlock ? _resultBlock(_textField.text.integerValue, increaseStatus) : nil;
@@ -237,9 +229,7 @@
     }
 }
 
-/**
- 检查TextField中数字的合法性,并修正
- */
+/// 检查TextField中数字的合法性,并修正
 - (void)checkTextFieldNumberWithUpdate
 {
     NSString *minValueString = [NSString stringWithFormat:@"%ld",_minValue];
@@ -251,16 +241,13 @@
     _textField.text.integerValue > _maxValue ? _textField.text = maxValueString : nil;
 }
 
-/**
- 清除定时器
- */
+/// 清除定时器
 - (void)cleanTimer
 {
     if (_timer.isValid) { [_timer invalidate] ; _timer = nil; }
 }
 
 #pragma mark - 加减按钮的属性设置
-
 - (void)setDecreaseHide:(BOOL)decreaseHide
 {
     // 当按钮为"减号按钮隐藏模式(饿了么/百度外卖/美团外卖按钮样式)"
@@ -359,9 +346,7 @@
     _textField.font = [UIFont systemFontOfSize:inputFieldFont];
 }
 #pragma mark - 核心动画
-/**
- 抖动动画
- */
+/// 抖动动画
 - (void)shakeAnimationMethod
 {
     CAKeyframeAnimation *animation = [CAKeyframeAnimation animationWithKeyPath:@"position.x"];
@@ -372,9 +357,7 @@
     animation.autoreverses = YES;
     [self.layer addAnimation:animation forKey:nil];
 }
-/**
- 旋转动画
- */
+/// 旋转动画
 - (void)rotationAnimationMethod
 {
     CABasicAnimation *rotationAnimation = [CABasicAnimation animationWithKeyPath:@"transform.rotation"];
@@ -387,7 +370,6 @@
 @end
 
 #pragma mark - NSString分类
-
 @implementation NSString (PPNumberButton)
 - (BOOL)pp_isNotBlank
 {

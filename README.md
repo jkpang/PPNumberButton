@@ -48,7 +48,7 @@ then
 ### 1.自定义加减按钮文字标题
 
 ```objc
- 	PPNumberButton *numberButton = [PPNumberButton numberButtonWithFrame:CGRectMake(100, 100, 110, 30)];
+    PPNumberButton *numberButton = [PPNumberButton numberButtonWithFrame:CGRectMake(100, 100, 110, 30)];
     // 开启抖动动画
     numberButton.shakeAnimation = YES;
     // 设置最小值
@@ -68,7 +68,7 @@ then
 ### 2.边框状态
 
 ```objc
-	PPNumberButton *numberButton = [PPNumberButton numberButtonWithFrame:CGRectMake(100, 160, 150, 30)];
+    PPNumberButton *numberButton = [PPNumberButton numberButtonWithFrame:CGRectMake(100, 160, 150, 30)];
     //设置边框颜色
     numberButton.borderColor = [UIColor grayColor];
     numberButton.increaseTitle = @"＋";
@@ -84,7 +84,7 @@ then
 ### 3.自定义加减按钮背景图片
 
 ```objc
- 	PPNumberButton *numberButton = [PPNumberButton numberButtonWithFrame:CGRectMake(100, 220, 100, 30)];
+    PPNumberButton *numberButton = [PPNumberButton numberButtonWithFrame:CGRectMake(100, 220, 100, 30)];
     numberButton.shakeAnimation = YES;
     numberButton.increaseImage = [UIImage imageNamed:@"increase_taobao"];
     numberButton.decreaseImage = [UIImage imageNamed:@"decrease_taobao"];
@@ -98,7 +98,7 @@ then
 ### 4.饿了么,美团外卖,百度外卖样式
 
 ```objc
-	PPNumberButton *numberButton = [PPNumberButton numberButtonWithFrame:CGRectMake(100, 280, 100, 30)];
+    PPNumberButton *numberButton = [PPNumberButton numberButtonWithFrame:CGRectMake(100, 280, 100, 30)];
     // 初始化时隐藏减按钮
     numberButton.decreaseHide = YES;
     numberButton.increaseImage = [UIImage imageNamed:@"increase_meituan"];
@@ -111,8 +111,10 @@ then
     [self.view addSubview:numberButton];
 ```
 
+更多详细用法参见Demo
+
 ## 使用xib创建
-在控制器界面拖入UIView控件,在右侧的设置栏中将class名修改为PPNumberButton,按回车就OK了.
+在控制器界面拖入UIView控件,在右侧的设置栏中将class名修改为PPNumberButton,按回车就OK了 **(注意:如果通过Cocopods导入, 使用XIB/SB创建按钮会显示不全,还可能会报错.但APP可以编译运行,这应该是Cocopods或Xcode的问题)**.
 
 ![示例图](https://github.com/jkpang/PPNumberButton/blob/master/Picture/photo1.png)
 
@@ -121,23 +123,46 @@ _*注意!如果有的同学将控件拖线到代码中,千万不要忘记在拖�
 **可以在IB界面设置相关属性**
 ![示例图](https://github.com/jkpang/PPNumberButton/blob/master/Picture/photo2.png)
 
-====
-因为之前的项目中需要,在网上找了好多都不符合要求,干脆自己花了点时间撸了一个,现在分享出来,希望能帮到有需要的人。 如果你觉得不错,希望点个Star鼓励一下
+因为之前的项目中需要,在网上找了好多都不符合要求,干脆自己花了点时间撸了一个,现在分享出来,希望能帮到有需要的人。 如果你觉得不错,希望点个Star鼓励一下!
 #### 你的Star是我持续更新的动力!
 
 ## CocoaPods更新日志
-* 2016.12.22(tag:0.6.0)--1.将代理与Block回调的结果数字的类型 由 NSString -> NSInteger;
-								  2.代理与Block回调结果增加 increaseStatus(加运算状态)
-								  3.修复有时代理方法没有被实现导致Crash的Bug.
-								  4.修复减按钮为隐藏模式时,减运算到最小值没有回调的BUG
+
+```
+• 2017.07.05(tag:0.7.0): 
+  1.新增 longPressSpaceTime 属性,设置长按加减速度的快慢以及功能关闭;
+  2.新增tableView列表Demo;
+  3.其他代码小细节优化.
+  
+• 2016.12.22(tag:0.6.0): 
+  1.将代理与Block回调的结果数字的类型 由 NSString -> NSInteger;
+  2.代理与Block回调结果增加 increaseStatus(加运算状态);
+  3.修复有时代理方法没有被实现导致Crash的Bug;
+  4.修复减按钮为隐藏模式时,减运算到最小值没有回调的BUG.
 								  
-* 2016.12.19(tag:0.5.0)--新增 editing(是否可以使用键盘输入) 属性
-* 2016.12.09(tag:0.4.0)--1.修复当”减”按钮初始化为隐藏模式时, 对其赋值不了的BUG;2.优化代码,修复其他小问题
-* 2016.11.03(tag:0.3.0)--重大更新:1.增加饿了么/美团外卖/百度外卖样式,2.调整自定义属性设置接口.
-* 2016.11.03(tag:0.2.0)--设置maxValue(最大值)与minValue(最小值)属性接口.
-* 2016.09.14(tag:0.1.2)--添加使用XIB创建时的实时显示
-* 2016.09.12(tag:0.1.1)--小细节优化
-* 2016.09.03(tag:0.1.0)--Pods初始化
+• 2016.12.19(tag:0.5.0):
+  新增 editing(是否可以使用键盘输入)属性.
+  
+• 2016.12.09(tag:0.4.0): 
+  1.修复当”减”按钮初始化为隐藏模式时, 对其赋值不了的BUG;
+  2.优化代码,修复其他小问题.
+  
+• 2016.11.03(tag:0.3.0)--重大更新:
+  1.增加饿了么/美团外卖/百度外卖样式;
+  2.调整自定义属性设置接口.
+  
+• 2016.11.03(tag:0.2.0): 
+  设置maxValue(最大值)与minValue(最小值)属性接口.
+  
+• 2016.09.14(tag:0.1.2);
+  添加使用XIB创建时的实时显示
+  
+• 2016.09.12(tag:0.1.1): 
+  小细节优化.
+  
+• 2016.09.03(tag:0.1.0):
+  Pods初始化.
+```
 
 ## 联系方式:
 * Weibo : [@jkpang-庞](http://weibo.com/5743737098/profile?rightmod=1&wvr=6&mod=personinfo&is_all=1)
