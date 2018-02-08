@@ -20,7 +20,6 @@
 		2281A7831D7669CA0094E113 /* PPNumberButtonTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2281A7821D7669CA0094E113 /* PPNumberButtonTests.m */; };
 		22A9A90B1D76AFB100BA2FF5 /* PPNumberButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 22A9A90A1D76AFB100BA2FF5 /* PPNumberButton.m */; };
 		702BEDBB202C115B00584286 /* PPViewController3.m in Sources */ = {isa = PBXBuildFile; fileRef = 702BEDBA202C115B00584286 /* PPViewController3.m */; };
-		702BEDBE202C116C00584286 /* PPViewController4.m in Sources */ = {isa = PBXBuildFile; fileRef = 702BEDBD202C116C00584286 /* PPViewController4.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,8 +57,6 @@
 		22A9A90A1D76AFB100BA2FF5 /* PPNumberButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPNumberButton.m; sourceTree = "<group>"; };
 		702BEDB9202C115B00584286 /* PPViewController3.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PPViewController3.h; sourceTree = "<group>"; };
 		702BEDBA202C115B00584286 /* PPViewController3.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PPViewController3.m; sourceTree = "<group>"; };
-		702BEDBC202C116C00584286 /* PPViewController4.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PPViewController4.h; sourceTree = "<group>"; };
-		702BEDBD202C116C00584286 /* PPViewController4.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PPViewController4.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,8 +88,6 @@
 				1DCCB5B61F0CE0E900FF5F50 /* PPViewController2.m */,
 				702BEDB9202C115B00584286 /* PPViewController3.h */,
 				702BEDBA202C115B00584286 /* PPViewController3.m */,
-				702BEDBC202C116C00584286 /* PPViewController4.h */,
-				702BEDBD202C116C00584286 /* PPViewController4.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -274,7 +269,6 @@
 				22A9A90B1D76AFB100BA2FF5 /* PPNumberButton.m in Sources */,
 				1DCCB5C31F0CE3A500FF5F50 /* PPTableViewCell.m in Sources */,
 				1DCCB5B91F0CE0E900FF5F50 /* PPViewController2.m in Sources */,
-				702BEDBE202C116C00584286 /* PPViewController4.m in Sources */,
 				2281A76D1D7669CA0094E113 /* AppDelegate.m in Sources */,
 				2281A76A1D7669C90094E113 /* main.m in Sources */,
 				1DCCB5B81F0CE0E900FF5F50 /* PPViewController1.m in Sources */,

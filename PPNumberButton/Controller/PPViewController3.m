@@ -17,9 +17,7 @@
 @end
 
 @implementation PPViewController3
-
-- (void)viewDidLoad {
-    [super viewDidLoad];
+-(void)initUI{
     UILabel *maxValueLabel = [UILabel new];
     maxValueLabel.text = @"设置最大值:";
     maxValueLabel.textColor = [UIColor greenColor];
@@ -51,6 +49,23 @@
     [self.view addSubview:self.stepValueTF];
     self.stepValueTF.leftView = stepValueLabel;
     
+    UILabel *decimalNumLabel = [UILabel new];
+    decimalNumLabel.text = @"小数功能开关:";
+    decimalNumLabel.textColor = [UIColor greenColor];
+    decimalNumLabel.font = [UIFont systemFontOfSize:15.0];
+    [decimalNumLabel sizeToFit];
+    decimalNumLabel.frame = CGRectMake(self.stepValueTF.frame.origin.x, CGRectGetMaxY(self.stepValueTF.frame)+30, decimalNumLabel.frame.size.width, 30);
+    [self.view addSubview:decimalNumLabel];
+    
+    
+    UISwitch *decimalNumSwitch = [UISwitch new];
+    decimalNumSwitch.frame = CGRectMake(CGRectGetMaxX(decimalNumLabel.frame), decimalNumLabel.frame.origin.y, 100, 30);
+    [decimalNumSwitch addTarget:self action:@selector(valueChangeAction:) forControlEvents:UIControlEventValueChanged];
+    [self.view addSubview:decimalNumSwitch];
+}
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    [self initUI];
     
     self.numberButton = [PPNumberButton numberButtonWithFrame:CGRectMake(100, 220, 120, 30)];
     self.numberButton.shakeAnimation = YES;
@@ -64,6 +79,9 @@
     };
     [self.view addSubview:self.numberButton];
     self.numberButton.center = self.view.center;
+}
+-(void)valueChangeAction:(UISwitch *)decimalNumSwitch{
+    self.numberButton.decimalNum = decimalNumSwitch.isOn;
 }
 -(void)textFieldDidEndEditing:(UITextField *)textField{
     if (textField==self.stepValueTF) {

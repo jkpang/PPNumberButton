@@ -23,7 +23,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 4;
+    return 3;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -41,12 +41,8 @@
         cell.detailTextLabel.text = @"列表形式 - table style";
     }else if (indexPath.row == 2) {
         cell.textLabel.text = @"PPViewController3";
-        cell.detailTextLabel.text = @"新增动态改变步长stepValue和动态改变最大值maxValue功能展示";
-    }else if (indexPath.row == 3) {
-        cell.textLabel.text = @"PPViewController4";
-        cell.detailTextLabel.text = @"新增小数功能展示";
+        cell.detailTextLabel.text = @"新增动态改变步长stepValue、动态改变最大值maxValue、动态改变是否支持小数等功能展示";
     }
-    
     return cell;
 }
 
