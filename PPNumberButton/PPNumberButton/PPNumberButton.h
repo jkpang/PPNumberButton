@@ -37,7 +37,7 @@
 
 /**
  加减代理回调
-
+ 
  @param numberButton 按钮
  @param number 结果
  @param increaseStatus 是否为加状态
@@ -54,7 +54,7 @@ IB_DESIGNABLE
 + (instancetype)numberButtonWithFrame:(CGRect)frame;
 
 /** 加减按钮的Block回调*/
-@property (nonatomic, copy) void(^resultBlock)(NSInteger number, BOOL increaseStatus/* 是否为加状态*/);
+@property (nonatomic, copy) void(^resultBlock)(PPNumberButton *ppBtn,CGFloat number, BOOL increaseStatus/* 是否为加状态*/);
 /** 代理*/
 @property (nonatomic, weak) id<PPNumberButtonDelegate> delegate;
 
@@ -70,7 +70,10 @@ IB_DESIGNABLE
 @property (nonatomic, strong ) IBInspectable UIColor *borderColor;
 
 /** 输入框中的内容 */
-@property (nonatomic, assign ) NSInteger currentNumber;
+@property (nonatomic, assign ) CGFloat currentNumber;
+/** 递增步长，默认步长为1 */
+@property (nonatomic, assign ) CGFloat stepValue;
+
 /** 输入框中的字体大小 */
 @property (nonatomic, assign ) IBInspectable CGFloat inputFieldFont;
 
@@ -88,10 +91,12 @@ IB_DESIGNABLE
 /** 减按钮标题 */
 @property (nonatomic, copy   ) IBInspectable NSString *decreaseTitle;
 
-/** 最小值, default is 1 */
-@property (nonatomic, assign ) IBInspectable NSInteger minValue;
+/** 最小值, default is 0 */
+@property (nonatomic, assign ) IBInspectable CGFloat minValue;
 /** 最大值 */
-@property (nonatomic, assign ) NSInteger maxValue;
+@property (nonatomic, assign ) CGFloat maxValue;
+/** 目前支持一位小数的递增 */
+@property (nonatomic, assign ) BOOL decimalNum;
 
 @end
 
@@ -103,3 +108,4 @@ IB_DESIGNABLE
  */
 - (BOOL)pp_isNotBlank;
 @end
+

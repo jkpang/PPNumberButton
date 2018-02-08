@@ -85,7 +85,8 @@
 #pragma mark - 设置UI子控件
 - (void)setupUI
 {
-    _minValue = 1;
+    self.stepValue = 1;
+    _minValue = 0;
     _maxValue = NSIntegerMax;
     _inputFieldFont = 15;
     _buttonTitleFont = 17;
@@ -99,9 +100,13 @@
     _textField = [[UITextField alloc] init];
     _textField.delegate = self;
     _textField.textAlignment = NSTextAlignmentCenter;
-    _textField.keyboardType = UIKeyboardTypeNumberPad;
+    _textField.keyboardType = UIKeyboardTypeDecimalPad;
     _textField.font = [UIFont systemFontOfSize:_inputFieldFont];
-    _textField.text = [NSString stringWithFormat:@"%ld",_minValue];
+    if (self.decimalNum) {
+        _textField.text = [NSString stringWithFormat:@"%.1f",_minValue];
+    }else{
+        _textField.text = [NSString stringWithFormat:@"%.f",_minValue];
+    }
     
     [self addSubview:_decreaseBtn];
     [self addSubview:_increaseBtn];
@@ -133,7 +138,7 @@
     _textField.frame = CGRectMake(_height, 0, _width - 2*_height, _height);
     _increaseBtn.frame = CGRectMake(_width - _height, 0, _height, _height);
     
-    if (_decreaseHide && _textField.text.integerValue < _minValue) {
+    if (_decreaseHide && _textField.text.floatValue < _minValue) {
         _decreaseBtn.frame = CGRectMake(_width-_height, 0, _height, _height);
     } else {
         _decreaseBtn.frame = CGRectMake(0, 0, _height, _height);
@@ -169,7 +174,7 @@
 {
     [self checkTextFieldNumberWithUpdate];
     
-    NSInteger number = _textField.text.integerValue + 1;
+    CGFloat number = [_textField.text floatValue] +     self.stepValue;
     
     if (number <= _maxValue) {
         // 当按钮为"减号按钮隐藏模式",且输入框值==设定最小值,减号按钮展开
@@ -182,11 +187,16 @@
                 _textField.hidden = NO;
             }];
         }
-        _textField.text = [NSString stringWithFormat:@"%ld", number];
+        
+        if (self.decimalNum) {
+            _textField.text = [NSString stringWithFormat:@"%.1f",number];
+        }else{
+            _textField.text = [NSString stringWithFormat:@"%.f",number];
+        }
         
         [self buttonClickCallBackWithIncreaseStatus:YES];
     } else {
-        if (_shakeAnimation) { [self shakeAnimationMethod]; } PPLog(@"已超过最大数量%ld",_maxValue);
+        if (_shakeAnimation) { [self shakeAnimationMethod]; } PPLog(@"已超过最大数量%.1f",_maxValue);
     }
 }
 
@@ -195,16 +205,24 @@
 {
     [self checkTextFieldNumberWithUpdate];
     
-    NSInteger number = [_textField.text integerValue] - 1;
+    CGFloat number = [_textField.text floatValue] - self.stepValue;
     
     if (number >= _minValue) {
-        _textField.text = [NSString stringWithFormat:@"%ld", number];
+        if (self.decimalNum) {
+            _textField.text = [NSString stringWithFormat:@"%.1f",number];
+        }else{
+            _textField.text = [NSString stringWithFormat:@"%.f",number];
+        }
         [self buttonClickCallBackWithIncreaseStatus:NO];
     } else {
         // 当按钮为"减号按钮隐藏模式",且输入框值 < 设定最小值,减号按钮隐藏
         if (_decreaseHide && number<_minValue) {
             _textField.hidden = YES;
-            _textField.text = [NSString stringWithFormat:@"%ld",_minValue-1];
+            if (self.decimalNum) {
+                _textField.text = [NSString stringWithFormat:@"%.1f",_minValue-1];
+            }else{
+                _textField.text = [NSString stringWithFormat:@"%.f",_minValue-1];
+            }
             
             [self buttonClickCallBackWithIncreaseStatus:NO];
             [self rotationAnimationMethod];
@@ -213,32 +231,42 @@
                 _decreaseBtn.alpha = 0;
                 _decreaseBtn.frame = CGRectMake(_width-_height, 0, _height, _height);
             }];
-
+            
             return;
         }
-        if (_shakeAnimation) { [self shakeAnimationMethod]; } PPLog(@"数量不能小于%ld",_minValue);
+        if (_shakeAnimation) { [self shakeAnimationMethod]; } PPLog(@"数量不能小于%.1f",_minValue);
     }
 }
 
 /// 点击响应
 - (void)buttonClickCallBackWithIncreaseStatus:(BOOL)increaseStatus
 {
-    _resultBlock ? _resultBlock(_textField.text.integerValue, increaseStatus) : nil;
+    _resultBlock ? _resultBlock(self,_textField.text.floatValue, increaseStatus) : nil;
     if ([_delegate respondsToSelector:@selector(pp_numberButton: number: increaseStatus:)]) {
-        [_delegate pp_numberButton:self number:_textField.text.integerValue increaseStatus:increaseStatus];
+        [_delegate pp_numberButton:self number:_textField.text.floatValue increaseStatus:increaseStatus];
     }
 }
 
 /// 检查TextField中数字的合法性,并修正
 - (void)checkTextFieldNumberWithUpdate
 {
-    NSString *minValueString = [NSString stringWithFormat:@"%ld",_minValue];
-    NSString *maxValueString = [NSString stringWithFormat:@"%ld",_maxValue];
-    
-    if ([_textField.text pp_isNotBlank] == NO || _textField.text.integerValue < _minValue) {
-        _textField.text = _decreaseHide ? [NSString stringWithFormat:@"%ld",minValueString.integerValue-1]:minValueString;
+    NSString *minValueString = nil;
+    NSString *maxValueString = nil;
+    if (self.decimalNum) {
+        minValueString = [NSString stringWithFormat:@"%.1f",_minValue];
+        maxValueString = [NSString stringWithFormat:@"%.1f",_maxValue];
+    }else{
+        minValueString = [NSString stringWithFormat:@"%.f",_minValue];
+        maxValueString = [NSString stringWithFormat:@"%.f",_maxValue];
     }
-    _textField.text.integerValue > _maxValue ? _textField.text = maxValueString : nil;
+    if ([_textField.text pp_isNotBlank] == NO || [_textField.text floatValue] < _minValue) {
+        if (self.decimalNum) {
+            _textField.text = _decreaseHide ? [NSString stringWithFormat:@"%.1f",minValueString.floatValue-self.stepValue]:minValueString;
+        }else{
+            _textField.text = _decreaseHide ? [NSString stringWithFormat:@"%.f",minValueString.floatValue-self.stepValue]:minValueString;
+        }
+    }
+    [_textField.text floatValue] > _maxValue ? _textField.text = maxValueString : nil;
 }
 
 /// 清除定时器
@@ -252,10 +280,17 @@
 {
     // 当按钮为"减号按钮隐藏模式(饿了么/百度外卖/美团外卖按钮样式)"
     if (decreaseHide) {
-        if (_textField.text.integerValue <= _minValue) {
+        if (_textField.text.floatValue <= _minValue) {
             _textField.hidden = YES;
             _decreaseBtn.alpha = 0;
-            _textField.text = [NSString stringWithFormat:@"%ld",_minValue-1];
+            
+            
+            if (self.decimalNum) {
+                _textField.text = [NSString stringWithFormat:@"%.1f",_minValue-1];
+            }else{
+                _textField.text = [NSString stringWithFormat:@"%.f",_minValue-1];
+            }
+            
             _decreaseBtn.frame = CGRectMake(_width-_height, 0, _height, _height);
         }
         self.backgroundColor = [UIColor clearColor];
@@ -265,22 +300,25 @@
     _decreaseHide = decreaseHide;
 }
 
-- (void)setEditing:(BOOL)editing
-{
+- (void)setEditing:(BOOL)editing{
     _editing = editing;
     _textField.enabled = editing;
 }
 
-- (void)setMinValue:(NSInteger)minValue
-{
+- (void)setMinValue:(CGFloat)minValue{
     _minValue = minValue;
-    _textField.text = [NSString stringWithFormat:@"%ld",minValue];
 }
-
-- (void)setBorderColor:(UIColor *)borderColor
-{
+-(void)setMaxValue:(CGFloat)maxValue{
+    _maxValue = maxValue;
+}
+-(void)setStepValue:(CGFloat)stepValue{
+    _stepValue = stepValue;
+}
+-(void)setDecimalNum:(BOOL)decimalNum{
+    _decimalNum = decimalNum;
+}
+- (void)setBorderColor:(UIColor *)borderColor{
     _borderColor = borderColor;
-    
     self.layer.borderWidth = 0.5;
     self.layer.borderColor = [borderColor CGColor];
     
@@ -323,9 +361,9 @@
 }
 
 #pragma mark - 输入框中的内容设置
-- (NSInteger)currentNumber { return _textField.text.integerValue; }
+- (CGFloat)currentNumber { return [_textField.text floatValue]; }
 
-- (void)setCurrentNumber:(NSInteger)currentNumber
+- (void)setCurrentNumber:(CGFloat)currentNumber
 {
     if (_decreaseHide && currentNumber < _minValue) {
         _textField.hidden = YES;
@@ -336,7 +374,13 @@
         _decreaseBtn.alpha = 1;
         _decreaseBtn.frame = CGRectMake(0, 0, _height, _height);
     }
-    _textField.text = [NSString stringWithFormat:@"%ld",currentNumber];
+    
+    if (self.decimalNum) {
+        _textField.text = [NSString stringWithFormat:@"%.1f",currentNumber];
+    }else{
+        _textField.text = [NSString stringWithFormat:@"%.f",currentNumber];
+    }
+    
     [self checkTextFieldNumberWithUpdate];
 }
 
@@ -384,3 +428,4 @@
 }
 
 @end
+

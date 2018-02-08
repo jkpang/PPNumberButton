@@ -19,6 +19,7 @@
 		2281A7781D7669CA0094E113 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2281A7761D7669CA0094E113 /* LaunchScreen.storyboard */; };
 		2281A7831D7669CA0094E113 /* PPNumberButtonTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2281A7821D7669CA0094E113 /* PPNumberButtonTests.m */; };
 		22A9A90B1D76AFB100BA2FF5 /* PPNumberButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 22A9A90A1D76AFB100BA2FF5 /* PPNumberButton.m */; };
+		702BEDBB202C115B00584286 /* PPViewController3.m in Sources */ = {isa = PBXBuildFile; fileRef = 702BEDBA202C115B00584286 /* PPViewController3.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +55,8 @@
 		2281A7841D7669CA0094E113 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		22A9A9091D76AFB100BA2FF5 /* PPNumberButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPNumberButton.h; sourceTree = "<group>"; };
 		22A9A90A1D76AFB100BA2FF5 /* PPNumberButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPNumberButton.m; sourceTree = "<group>"; };
+		702BEDB9202C115B00584286 /* PPViewController3.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PPViewController3.h; sourceTree = "<group>"; };
+		702BEDBA202C115B00584286 /* PPViewController3.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PPViewController3.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +86,8 @@
 				1DCCB5B41F0CE0E900FF5F50 /* PPViewController1.m */,
 				1DCCB5B51F0CE0E900FF5F50 /* PPViewController2.h */,
 				1DCCB5B61F0CE0E900FF5F50 /* PPViewController2.m */,
+				702BEDB9202C115B00584286 /* PPViewController3.h */,
+				702BEDBA202C115B00584286 /* PPViewController3.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -207,7 +212,7 @@
 				TargetAttributes = {
 					2281A7641D7669C90094E113 = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = K6769CKV8N;
+						DevelopmentTeam = 7D992WX2BB;
 					};
 					2281A77D1D7669CA0094E113 = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -260,6 +265,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				702BEDBB202C115B00584286 /* PPViewController3.m in Sources */,
 				22A9A90B1D76AFB100BA2FF5 /* PPNumberButton.m in Sources */,
 				1DCCB5C31F0CE3A500FF5F50 /* PPTableViewCell.m in Sources */,
 				1DCCB5B91F0CE0E900FF5F50 /* PPViewController2.m in Sources */,
@@ -398,6 +404,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 7D992WX2BB;
 				INFOPLIST_FILE = PPNumberButton/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -413,6 +420,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 7D992WX2BB;
 				INFOPLIST_FILE = PPNumberButton/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
