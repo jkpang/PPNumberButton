@@ -308,15 +308,19 @@
 - (void)setMinValue:(CGFloat)minValue{
     _minValue = minValue;
 }
--(void)setMaxValue:(CGFloat)maxValue{
+
+- (void)setMaxValue:(CGFloat)maxValue{
     _maxValue = maxValue;
 }
--(void)setStepValue:(CGFloat)stepValue{
+
+- (void)setStepValue:(CGFloat)stepValue{
     _stepValue = stepValue;
 }
--(void)setDecimalNum:(BOOL)decimalNum{
+
+- (void)setDecimalNum:(BOOL)decimalNum{
     _decimalNum = decimalNum;
 }
+
 - (void)setBorderColor:(UIColor *)borderColor{
     _borderColor = borderColor;
     self.layer.borderWidth = 0.5;
