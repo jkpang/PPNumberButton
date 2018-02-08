@@ -44,8 +44,8 @@
     numberButton.delegate = self;
     numberButton.longPressSpaceTime = CGFLOAT_MAX;
     
-    numberButton.resultBlock = ^(NSInteger num ,BOOL increaseStatus){
-        NSLog(@"%ld",num);
+    numberButton.resultBlock = ^(PPNumberButton *ppBtn, CGFloat number, BOOL increaseStatus){
+        NSLog(@"%f",number);
     };
     [self.view addSubview:numberButton];
 }
@@ -66,8 +66,8 @@
     numberButton.increaseTitle = @"＋";
     numberButton.decreaseTitle = @"－";
     numberButton.currentNumber = 777;
-    numberButton.resultBlock = ^(NSInteger num ,BOOL increaseStatus){
-        NSLog(@"%ld",num);
+    numberButton.resultBlock = ^(PPNumberButton *ppBtn, CGFloat number, BOOL increaseStatus){
+        NSLog(@"%f",number);
     };
     
     [self.view addSubview:numberButton];
@@ -84,8 +84,8 @@
     numberButton.increaseImage = [UIImage imageNamed:@"increase_taobao"];
     numberButton.decreaseImage = [UIImage imageNamed:@"decrease_taobao"];
     
-    numberButton.resultBlock = ^(NSInteger num ,BOOL increaseStatus){
-        NSLog(@"%ld",num);
+    numberButton.resultBlock = ^(PPNumberButton *ppBtn, CGFloat number, BOOL increaseStatus){
+        NSLog(@"%f",number);
     };
     
     [self.view addSubview:numberButton];
@@ -102,8 +102,8 @@
     numberButton.increaseImage = [UIImage imageNamed:@"increase_meituan"];
     numberButton.decreaseImage = [UIImage imageNamed:@"decrease_meituan"];
     numberButton.currentNumber = -777;
-    numberButton.resultBlock = ^(NSInteger num ,BOOL increaseStatus){
-        NSLog(@"%ld",num);
+    numberButton.resultBlock = ^(PPNumberButton *ppBtn, CGFloat number, BOOL increaseStatus){
+        NSLog(@"%f",number);
     };
     
     [self.view addSubview:numberButton];

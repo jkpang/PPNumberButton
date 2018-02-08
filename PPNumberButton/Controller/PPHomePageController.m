@@ -18,11 +18,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.tableView.rowHeight = 66;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 2;
+    return 4;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -31,15 +32,19 @@
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"cell"];
     }
-    
+    cell.detailTextLabel.numberOfLines = 0;
     if (indexPath.row == 0) {
         cell.textLabel.text = @"PPViewController1";
         cell.detailTextLabel.text = @"普通view形式";
-    }
-    
-    if (indexPath.row == 1) {
+    }else if (indexPath.row == 1) {
         cell.textLabel.text = @"PPViewController2";
         cell.detailTextLabel.text = @"列表形式 - table style";
+    }else if (indexPath.row == 2) {
+        cell.textLabel.text = @"PPViewController3";
+        cell.detailTextLabel.text = @"新增动态改变步长stepValue和动态改变最大值maxValue功能展示";
+    }else if (indexPath.row == 3) {
+        cell.textLabel.text = @"PPViewController4";
+        cell.detailTextLabel.text = @"新增小数功能展示";
     }
     
     return cell;

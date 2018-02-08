@@ -45,8 +45,9 @@
         _numberButton.decreaseHide = YES;
         _numberButton.increaseImage = [UIImage imageNamed:@"increase_meituan"];
         _numberButton.decreaseImage = [UIImage imageNamed:@"decrease_meituan"];
-        _numberButton.resultBlock = ^(NSInteger num ,BOOL increaseStatus){
-            NSLog(@"%ld",num);
+
+        _numberButton.resultBlock = ^(PPNumberButton *ppBtn, CGFloat number, BOOL increaseStatus) {
+            NSLog(@"%ld",number);
         };
     }
     return _numberButton;
