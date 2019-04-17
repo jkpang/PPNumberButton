@@ -265,8 +265,16 @@
         }else{
             _textField.text = _decreaseHide ? [NSString stringWithFormat:@"%.f",minValueString.floatValue-self.stepValue]:minValueString;
         }
+        if ([_delegate respondsToSelector:@selector(pp_numberButton: number: increaseStatus:)]) {
+            [_delegate pp_numberButton:self number:_textField.text.floatValue increaseStatus:NO];
+        }
     }
-    [_textField.text floatValue] > _maxValue ? _textField.text = maxValueString : nil;
+    if ([_textField.text floatValue] > _maxValue) {
+        _textField.text = maxValueString;
+        if ([_delegate respondsToSelector:@selector(pp_numberButton: number: increaseStatus:)]) {
+            [_delegate pp_numberButton:self number:_textField.text.floatValue increaseStatus:YES];
+        }
+    }
 }
 
 /// 清除定时器
