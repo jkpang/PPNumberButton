@@ -157,7 +157,7 @@ _*注意!如果有的同学将控件拖线到代码中,千万不要忘记在拖�
   Pods初始化.
 ```
 ## 我的App <-> My APP
-- [PPHub](https://github.com/jkpang/PPHub-Feedback)：一个简洁漂亮的 GitHub iOS客户端 <-> A simple and beautiful GitHub iOS client   
+- [PPHub](https://github.com/PPHubApp/PPHub-Feedback)：一个简洁漂亮的 GitHub iOS客户端 <-> A simple and beautiful GitHub iOS client   
 [![App_Store](https://github.com/jkpang/PPHub-Feedback/blob/master/Resource/Download_on_the_App_Store_135x40.svg)](https://itunes.apple.com/cn/app/PPHub%20For%20GitHub/id1314212521?mt=8)
 
 ## 联系方式:
